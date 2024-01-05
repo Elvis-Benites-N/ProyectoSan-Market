@@ -1,0 +1,107 @@
+<div class="flex-column gap-40">
+  <div class="flex flex-wrap gap-24">
+    <!-- INFORMACION FACTURACION -->
+    <section class="card p-24 flex-column gap-24" style="flex: 1 1 600px">
+      <!-- TITULO -->
+      <nz-skeleton-element
+        nzType="input"
+        style="height: 32px; width: 300px"
+        class="border-text-skeleton"
+      ></nz-skeleton-element>
+
+      <div class="flex-column gap-8">
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 24px; width: 120px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 24px; width: 220px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 24px; width: 140px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 32px; width: 80%"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+        <div class="flex items-center gap-8">
+          <nz-skeleton-element
+            nzType="input"
+            style="height: 32px; flex: 1 1 200px"
+            class="border-text-skeleton"
+          ></nz-skeleton-element>
+          <nz-skeleton-element
+            nzType="input"
+            style="height: 32px; flex: 1 1 200px"
+            class="border-text-skeleton"
+          ></nz-skeleton-element>
+        </div>
+
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 24px; width: 120px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 24px; width: 220px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+      </div>
+    </section>
+
+    <section
+      class="card p-24 flex-column gap-24"
+      style="flex: 1 1 600px; max-width: 600px"
+    >
+      <!-- TITULO -->
+      <nz-skeleton-element
+        nzType="input"
+        style="height: 32px; width: 200px"
+        class="border-text-skeleton"
+      ></nz-skeleton-element>
+
+      <div class="flex-column gap-8">
+        <div
+          class="flex flex-wrap items-center justify-space-between"
+          *ngFor="let e of 'i'.repeat(5).split('')"
+        >
+          <nz-skeleton-element
+            nzType="input"
+            style="height: 24px; width: 320px"
+            class="border-text-skeleton"
+            [nzActive]="true"
+          ></nz-skeleton-element>
+
+          <nz-skeleton-element
+            nzType="input"
+            style="height: 24px; width: 100px"
+            class="border-text-skeleton"
+            [nzActive]="true"
+          ></nz-skeleton-element>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-space-between">
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 30px; width: 180px"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+
+        <nz-skeleton-element
+          nzType="input"
+          style="height: 30px; width: 120px"
+          class="border-text-skeleton"
+          [nzActive]="true"
+        ></nz-skeleton-element>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+@use '../../tokens/tokens-colors.scss' as tColors;
+
+@mixin color-classes($name, $color) {
+  .background-#{$name} {
+    background-color: $color;
+  }
+
+  .text-#{$name} {
+    color: $color;
+  }
+
+  .border-#{$name} {
+    border: 1px solid $color
+  }
+}
+
+// PRIMARIES
+@include color-classes('primary-1', tColors.$color-primary-1);
+@include color-classes('primary-2', tColors.$color-primary-2);
+@include color-classes('primary-3', tColors.$color-primary-3);
+@include color-classes('primary-4', tColors.$color-primary-4);
+@include color-classes('primary-5', tColors.$color-primary-5);
+@include color-classes('primary-6', tColors.$color-primary-6);
+@include color-classes('primary-7', tColors.$color-primary-7);
+@include color-classes('primary-8', tColors.$color-primary-8);
+@include color-classes('primary-9', tColors.$color-primary-9);
+
+// SEMANTICS
+@include color-classes('success', tColors.$color-success);
+@include color-classes('success-light', tColors.$color-success-light);
+@include color-classes('warning', tColors.$color-warning);
+@include color-classes('warning-light', tColors.$color-warning-light);
+@include color-classes('danger', tColors.$color-danger);
+@include color-classes('danger-light', tColors.$color-danger-light);
+
+// SECONDARIES
+@include color-classes('purple-1', tColors.$color-purple-1);
+@include color-classes('purple-2', tColors.$color-purple-2);
+@include color-classes('purple-3', tColors.$color-purple-3);
+@include color-classes('orange-1', tColors.$color-orange-1);
+@include color-classes('orange-2', tColors.$color-orange-2);
+@include color-classes('orange-3', tColors.$color-orange-3);
+@include color-classes('light-blue-1', tColors.$color-light-blue-1);
+@include color-classes('light-blue-2', tColors.$color-light-blue-2);
+@include color-classes('light-blue-3', tColors.$color-light-blue-3);
+
+// NEUTRALS
+@include color-classes('base', tColors.$color-base);
+@include color-classes('subordinate', tColors.$color-subordinate);
+@include color-classes('inverse', tColors.$color-inverse);
+
+// SYSTEM COLORS
+@include color-classes('light', tColors.$color-light);
+@include color-classes('dark', tColors.$color-dark);

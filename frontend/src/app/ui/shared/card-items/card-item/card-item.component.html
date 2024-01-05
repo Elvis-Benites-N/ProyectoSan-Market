@@ -1,0 +1,67 @@
+<div
+  class="card card-scale w100"
+  style="height: 200px; position: relative; padding: 16px"
+>
+  <div class="flex-column gap-16">
+    <div class="flex-column" style="gap: 4px">
+      <!-- TITULO Y CATEGORIA -->
+      <div class="flex justify-space-between gap-16 items-center">
+        <!-- TITULO -->
+        <div style="flex: 1 1">
+          <h5 class="w100 text-ellipsis" style="max-width: 240px">
+            {{ item.itemNombre }}
+          </h5>
+        </div>
+
+        <!-- CATEGORIA -->
+        <tag-tipo-item
+          [tipoItemDescripcion]="item.tipoItemDescripcion"
+          [tipoItemId]="item.tipoItemId"
+        ></tag-tipo-item>
+      </div>
+
+      <nz-divider></nz-divider>
+    </div>
+
+    <div class="flex-column" style="gap: 4px">
+      <!-- FACULTAD -->
+      <p class="text-ellipsis text-primary-7" style="max-width: 75%">
+        {{ item.unidepPadreNivel2Descripcion }}
+      </p>
+
+      <!-- UNIDAD -->
+      <div class="flex gap-8 items-center text-subordinate">
+        <icon name="unidad" class="text-primary-5"></icon>
+        <div nzFlex="1 1" style="max-width: 80%">
+          <p class="text-ellipsis text-primary-5">
+            {{ item.unidepDescripcion }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="text-purple-3">
+      {{ item.monedaSimbolo }}
+      {{ item.itemPrecio | number: '.2-2' }}
+    </h4>
+  </div>
+
+  <!-- BOTON -->
+  <button
+    nz-button
+    nzType="primary"
+    style="
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      border-radius: 10px 0 10px 0;
+    "
+    (click)="agregarItemCarrito()"
+    [nzLoading]="procesandoPeticion"
+  >
+    <div class="flex items-center gap-8">
+      <icon name="shopping-cart"></icon>
+      {{ 'BUTTONS.LABELS.ADD_CART' | translate }}
+    </div>
+  </button>
+</div>

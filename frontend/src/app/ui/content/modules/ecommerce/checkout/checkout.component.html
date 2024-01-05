@@ -1,0 +1,61 @@
+<section id="checkout-container" class="flex-column gap-24">
+  <!-- TÍTULO Y DESCRIPCIÓN -->
+  <div class="flex-column gap-12">
+    <div class="flex-column">
+      <h2>Ticket de pago</h2>
+      <nz-divider></nz-divider>
+    </div>
+    <p>
+      Completa la información necesaria para generar tu ticket de pago. Una vez
+      que lo tengas, podrás completar fácilmente el pago de tus ítems en el
+      banco que prefieras.
+    </p>
+  </div>
+
+  <!-- CHECKOUT -->
+  <div id="checkout" class="flex-column items-center gap-40 p-24">
+    <!-- STEPS -->
+    <nz-steps [nzCurrent]="formWrapper.pasoActual" style="max-width: 1000px">
+      <nz-step nzTitle="Facturación"></nz-step>
+      <nz-step
+        nzTitle="Transferencia bancaria"
+        [nzIcon]="formWrapper.enviandoFormulario ? 'loading' : undefined"
+      ></nz-step>
+      <nz-step nzTitle="Confirmación"></nz-step>
+    </nz-steps>
+
+    <!-- COMPONENTES -->
+    <div
+      *ngIf="!dataCargada; then cargandoDataTemplate; else dataCargadaTemplate"
+    ></div>
+
+    <ng-template #cargandoDataTemplate>
+      <checkout-skeleton class="w100"></checkout-skeleton>
+    </ng-template>
+
+    <ng-template #dataCargadaTemplate>
+      <ng-container [ngSwitch]="formWrapper.pasoActual">
+        
+        <step-facturacion
+          [fw]="formWrapper"
+          [data]="data"
+          class="w100 animate__animated animate__fadeIn"
+          *ngSwitchCase="PasoActualType.Facturacion"
+        ></step-facturacion>
+        
+        <div
+          class="w100 animate__animated animate__fadeIn"
+          *ngSwitchCase="PasoActualType.TransferenciaBancaria"
+        >
+          <step-transferencia-bancaria></step-transferencia-bancaria>
+        </div>
+        <div
+          class="w100 animate__animated animate__fadeIn"
+          *ngSwitchCase="PasoActualType.Confirmacion"
+        >
+          <step-confirmacion></step-confirmacion>
+        </div>
+      </ng-container>
+    </ng-template>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+#main-container {
+  gap: 40px;
+}
+
+#section-deudas {
+  order: 1;
+}
+
+#section-filtros {
+  order: 2;
+  flex: 1 1 420px;
+  max-width: 420px;
+  position: sticky;
+  top: 84px;
+}
+
+@media only screen and (max-width: 1491px) {
+  #main-container {
+    gap: 24px;
+  }
+
+  #section-deudas {
+    order: 2;
+  }
+
+  #section-filtros {
+    order: 1;
+    flex: 1 1 420px;
+    max-width: inherit;
+    position: initial;
+  }
+}
+

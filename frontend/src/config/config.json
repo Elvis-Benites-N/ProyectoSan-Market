@@ -1,0 +1,11 @@
+{
+    "services": {
+        "apigateway": {
+            "url": "http://localhost:5544/SanMarket/api-gateway"
+        }
+    },
+    "banner": {
+        "mostrar": "true",
+        "nombre": "Desarrollo"
+    }
+}

@@ -1,0 +1,114 @@
+<div class="flex-column h100 gap-24 justify-center">
+  <div class="flex-column">
+    <!-- TITULO -->
+    <h1 class="text-inverse">
+      {{ 'MODULES.LOGIN.FORM.LABELS.TITLE' | translate }}
+    </h1>
+    <!-- LOGIN -->
+    <p class="text-inverse">
+      {{ 'MODULES.LOGIN.FORM.LABELS.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <form [formGroup]="loginForm.formulario" nz-form (ngSubmit)="onSubmit()">
+    <div class="flex-column gap-24">
+      <div class="flex-column gap-16">
+        <!-- EMAIL -->
+        <nz-form-item>
+          <nz-form-control
+            [nzErrorTip]="
+              loginForm.getErrorMessage('email', 'Correo') | translate
+            "
+            [nzValidateStatus]="loginForm.getValidateStatus('email')"
+          >
+            <nz-input-group nzSize="large" [nzPrefix]="emailPreffix">
+              <input
+                type="text"
+                nz-input
+                placeholder="Correo electrónico *"
+                formControlName="email"
+                maxlength="120"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <!-- PASSWORD -->
+        <div class="flex-column" style="gap: 4px">
+          <nz-form-item>
+            <nz-form-control
+              [nzErrorTip]="
+                loginForm.getErrorMessage('password', 'Contraseña') | translate
+              "
+              [nzValidateStatus]="loginForm.getValidateStatus('password')"
+            >
+              <nz-input-group
+                nzSize="large"
+                [nzPrefix]="passwordPreffix"
+                [nzSuffix]="passwordSuffix"
+              >
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Contraseña *"
+                  formControlName="password"
+                  maxlength="50"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- FORGOT PASSWORD -->
+          <a
+            routerLink="/forgot-password"
+            class="text-inverse"
+            style="align-self: flex-end"
+          >
+            {{ 'MODULES.LOGIN.FORM.LABELS.FORGOT_PASSWORD' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <!-- BOTON -->
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        [nzLoading]="loginForm.enviandoFormulario"
+        nzSize="large"
+      >
+        {{ 'BUTTONS.LABELS.LOGIN' | translate }}
+      </button>
+    </div>
+  </form>
+
+  <nz-alert
+    nzType="error"
+    [nzMessage]="loginForm.errorMessageFromAPI!"
+    nzCloseable
+    nzShowIcon
+    *ngIf="loginForm.hasErrorFromAPI"
+  ></nz-alert>
+
+  <div style="flex: 1 1 0"></div>
+
+  <small class="text-inverse text-center">
+    {{ 'MODULES.LOGIN.FORM.LABELS.LOGIN_DIRECT_INSTITUTIONAL' | translate }}
+  </small>
+</div>
+
+<ng-template #emailPreffix>
+  <icon name="correo"></icon>
+</ng-template>
+
+<ng-template #passwordPreffix>
+  <icon name="lock"></icon>
+</ng-template>
+
+<ng-template #passwordSuffix>
+  <icon
+    [name]="showPassword ? 'closed-eye' : 'eye'"
+    (click)="showPassword = !showPassword"
+    class="pointer"
+  ></icon>
+</ng-template>

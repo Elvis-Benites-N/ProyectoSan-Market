@@ -1,0 +1,157 @@
+<header
+  id="custom-header"
+  class="flex items-center justify-space-between animate__animated animate__fadeInDown"
+  [ngStyle]="{
+    'box-shadow': seMuestraSombra
+      ? '0 1px 2px 0 rgba(136, 144, 195, 0.2),0 2px 6px 2px rgba(136, 144, 195, 0.2)'
+      : 'none'
+  }"
+>
+  <div *ngIf="isHeaderMobile; then headerTemplate; else normalTemplate"></div>
+
+  <ng-template #headerTemplate>
+    <!-- MENU -->
+    <button nz-button nzType="text" nzShape="circle" class="flex">
+      <icon name="menu" style="margin: auto"></icon>
+    </button>
+
+    <!-- LOGO -->
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
+
+    <div class="flex">
+      <shopping-cart [isTablet]="true"></shopping-cart>
+      <div style="width: 10px"></div>
+    </div>
+  </ng-template>
+
+  <ng-template #normalTemplate>
+    <!-- LOGO -->
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
+
+    <!-- MENU -->
+    <ul nz-menu nzMode="horizontal">
+      <!-- HOME -->
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+        <a routerLink="/" class="flex items-center gap-8">
+          <icon name="home"></icon>
+          {{ 'MODULES.ECOMMERCE.HOME.TITLE' | translate }}
+        </a>
+      </li>
+      <!-- CATALOGUE -->
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+        <a routerLink="/catalogo" class="flex items-center gap-8">
+          <icon name="store"></icon>
+          {{ 'MODULES.ECOMMERCE.CATALOG.TITLE' | translate }}
+        </a>
+      </li>
+      <!-- GROUPS -->
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+        <a routerLink="/grupos" class="flex items-center gap-8">
+          <icon name="groups"></icon>
+          {{ 'MODULES.ECOMMERCE.GROUPS.TITLE' | translate }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- OPTIONS -->
+    <div class="flex gap-16 items-center">
+      <!-- BOTONES -->
+      <div class="flex gap-16 items-center">
+        <div class="flex items-center gap-8">
+          <search></search>
+          <shopping-cart></shopping-cart>
+        </div>
+        <language-picker></language-picker>
+      </div>
+
+      <!-- DIVIDER -->
+      <nz-divider
+        nzType="vertical"
+        style="height: 36px; margin: 0"
+      ></nz-divider>
+
+      <!-- LOGIN BUTTON -->
+      <a
+        nz-button
+        nzType="text"
+        routerLink="/auth"
+        *ngIf="!authService.existeSesion()"
+      >
+        {{ 'BUTTONS.LABELS.LOGIN' | translate }}</a
+      >
+
+      <!-- PROFILE BUTTON -->
+      <ng-container *ngIf="authService.existeSesion()">
+        <button
+          nz-button
+          nzType="text"
+          nz-popover
+          [nzPopoverContent]="loginOptionsContent"
+          nzPopoverPlacement="bottomRight"
+          nzPopoverTrigger="click"
+          style="height: 48px"
+        >
+          <div class="flex items-center gap-8">
+            <div
+              class="flex background-primary-3"
+              style="width: 32px; height: 32px; border-radius: 50%"
+            >
+              <icon name="user" style="margin: auto"></icon>
+            </div>
+            Hola,
+            {{ usuario.nombres }}
+          </div>
+        </button>
+      </ng-container>
+    </div>
+  </ng-template>
+</header>
+
+<ng-template #logo>
+  <a routerLink="/">
+    <img src="assets/logos/logo-san-market.svg" alt="San Market" />
+  </a>
+</ng-template>
+
+<ng-template #loginOptionsContent>
+  <div class="flex-column gap-8" style="width: 280px; max-width: 280px">
+    <div class="flex items-center gap-12" style="padding: 12px 24px">
+      <div class="flex p-16 background-primary-3" style="border-radius: 50%">
+        <icon name="user" style="margin: auto; font-size: 1.4rem"></icon>
+      </div>
+      <h5>
+        {{ usuario.nombres }} <br />
+        {{ usuario.apellidos }}
+      </h5>
+    </div>
+
+    <nz-divider></nz-divider>
+
+    <ul nz-menu nzMode="inline">
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/tickets-pago"> Tickets de Pago </a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/pagos-asignados"> Pagos Asignados </a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/transacciones"> Transacciones </a>
+      </li>
+    </ul>
+
+    <nz-divider></nz-divider>
+
+    <div class="flex" style="padding: 12px 24px">
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        class="flex items-center justify-center gap-8"
+        (click)="cerrarSesion()"
+      >
+        <icon name="cerrar-sesion"></icon>
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</ng-template>

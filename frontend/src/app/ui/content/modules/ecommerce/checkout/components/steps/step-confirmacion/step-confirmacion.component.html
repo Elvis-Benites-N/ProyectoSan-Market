@@ -1,0 +1,109 @@
+<!-- <div *ngIf="!pago; then cargandoPago; else pagoCargado"></div>
+
+<ng-template #cargandoPago>
+  <span>cargando...</span>
+</ng-template>
+
+<ng-template #pagoCargado>
+  <div class="card p-24 gap-24 items-center">
+    <img
+      src="assets/images/ecommerce/checkout/check-green-img.svg"
+      alt="Ticket generado correctamente"
+      height="80px"
+    />
+
+    <h2 class="text-center">¡Gracias!</h2>
+
+    <h3 class="text-center">Tu ticket de pago ha sido generado</h3>
+
+    <span class="text-center"
+      >Recibirás un correo con el ticket generado, o puedes
+      <a href="#">descargarlo aquí</a></span
+    >
+
+    <div class="w50" style="margin: auto">
+      <h4>Detalles del ticket de pago</h4>
+      <nz-divider></nz-divider>
+      <div class="flex justify-space-between items-center">
+        <span>Código de pago:</span>
+        <h5 nz-typography nzCopyable [nzCopyText]="pago.codigoPago">
+          {{ pago.codigoPago }}
+        </h5>
+      </div>
+      <div class="flex justify-space-between items-center">
+        <span>Fecha de emisión del ticket:</span>
+        <h5>
+          {{ pago.fechaCreacion | date: 'dd/MM/yyyy' }} a las
+          {{ pago.fechaCreacion | date: 'hh:mm a' }}
+        </h5>
+      </div>
+      <div class="flex justify-space-between items-center">
+        <span>Fecha máxima de pago:</span>
+        <h5>
+          {{ pago.fechaMaximaPago | date: 'dd/MM/yyyy' }} a las
+          {{ pago.fechaMaximaPago | date: 'hh:mm a' }}
+        </h5>
+      </div>
+      <div class="flex justify-space-between items-center">
+        <span>Monto total:</span>
+        <h5>
+          {{ pago.moneda.simbolo }}
+          {{ pago.montoTotal | number: '.2-2' }}
+        </h5>
+      </div>
+    </div>
+
+    <span>
+      Una vez que hayas realizado tu transferencia de pago al banco que
+      elegiste, verifica en la sección "Tus tickets de pago" para completar tu
+      compra.
+    </span>
+
+    <span>
+      Ten en cuenta que el monto podría estar sujeto a una comisión adicional
+      dependiendo del banco y el método de pago utilizado.
+    </span>
+
+    <h4>Tus ítems</h4>
+
+    <div class="flex-column gap-8" style="width: 50%">
+      <h4>Detalles del cliente</h4>
+      <div class="flex items-center justify-space-between">
+        <div class="flex-column">
+          <span>{{ pago.comprobantePago.razonSocial ? 'RUC:' : 'DNI:' }}</span>
+          <h5>{{ pago.comprobantePago.numeroDocumento }}</h5>
+        </div>
+        <div class="flex-column">
+          <span
+            >{{
+              pago.comprobantePago.razonSocial
+                ? 'Razón Social:'
+                : 'Nombres y apellidos:'
+            }}
+          </span>
+          <h5 *ngIf="pago.comprobantePago.nombres">
+            {{ pago.comprobantePago.nombres }}
+            {{ pago.comprobantePago.apellidos }}
+          </h5>
+          <h5 *ngIf="pago.comprobantePago.razonSocial">
+            {{ pago.comprobantePago.razonSocial }}
+          </h5>
+        </div>
+        <nz-space nzDirection="vertical">
+          <span>Correo electrónico:</span>
+          <h5>{{ pago.comprobantePago.email }}</h5>
+        </nz-space>
+      </div>
+    </div>
+
+    <a
+      nz-button
+      nzType="primary"
+      routerLink="/catalogo"
+      class="flex items-center gap-8"
+    >
+      <icon name="store"></icon>
+      {{ 'BUTTONS.LABELS.BACK_CATALOG' | translate }}</a
+    >
+  </div>
+</ng-template> -->

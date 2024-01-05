@@ -1,0 +1,43 @@
+@use '../../tokens/tokens-spacing.scss' as tSpacings;
+
+@mixin gap-classes($name, $gapSize){
+  .gap-#{$name}{
+    gap: $gapSize;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between{
+  justify-content: space-between
+}
+
+.justify-end{
+  justify-content: flex-end
+}
+
+@include gap-classes('8', tSpacings.$gap8);
+@include gap-classes('12', tSpacings.$gap12);
+@include gap-classes('16', tSpacings.$gap16);
+@include gap-classes('24', tSpacings.$gap24);
+@include gap-classes('40', tSpacings.$gap40);

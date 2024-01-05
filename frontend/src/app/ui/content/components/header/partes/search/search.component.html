@@ -1,0 +1,16 @@
+<button
+  nz-button
+  nzType="default"
+  nzShape="circle"
+  nz-popover
+  [nzPopoverContent]="contenidoBusqueda"
+  nzPopoverTrigger="click"
+  nzPopoverPlacement="bottomRight"
+  [(nzPopoverVisible)]="estaBusquedaAbierta"
+>
+<img src="assets/icons/search.svg" alt="Search" width="15" height="15">
+  
+</button>
+
+<ng-template #contenidoBusqueda> </ng-template>
+<ng-template #limpiarInput> </ng-template>

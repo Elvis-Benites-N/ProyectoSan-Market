@@ -1,0 +1,41 @@
+#article-content {
+  gap: 16px 24px;
+}
+
+#boton-detalle:hover,
+#boton-detalle:focus {
+  background-color: var(--color-purple-3);
+  border: 1px solid var(--color-purple-3);
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1787px) {
+  #article-content {
+    gap: 16px 40px;
+  }
+}
+
+@media only screen and (min-width: 1788px) {
+  #article-content {
+    gap: 16px 80px;
+  }
+}
+
+:host
+  ::ng-deep
+  .ant-collapse
+  > .ant-collapse-item.ant-collapse-no-arrow
+  > .ant-collapse-header {
+  padding: 0;
+  border-bottom: 0;
+}
+
+:host ::ng-deep .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 0;
+}
+
+:host ::ng-deep .ant-collapse-content > .ant-collapse-content-box {
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+}

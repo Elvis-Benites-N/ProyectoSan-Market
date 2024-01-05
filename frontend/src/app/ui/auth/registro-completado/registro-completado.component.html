@@ -1,0 +1,58 @@
+<section class="w100 h100-screen">
+  <div
+    id="registro-completado"
+    class="w100 flex items-center justify-center gap-24 p-40"
+  >
+    <div class="flex-column gap-24 animate__animated animate__fadeIn">
+      <div class="flex-column items-center">
+        <div class="flex-column items-center gap-16">
+          <p class="text-primary-5" style="font-size: 40px; font-weight: 700">
+            ¡Casi listo!
+          </p>
+          <h5 class="text-center">
+            Solo necesitamos que confirmes tu cuenta para poder activarla. Por
+            favor, revisa el correo electrónico que enviamos a:
+          </h5>
+        </div>
+        <h2 class="text-center">{{ email || 'test@test.com' }}</h2>
+      </div>
+
+      <h5 class="text-center">
+        Si ya confirmaste tu cuenta,
+        <a routerLink="/auth">haz clic aquí para iniciar sesión</a>.
+      </h5>
+
+      <nz-alert
+        nzType="error"
+        [nzShowIcon]="true"
+        [nzMessage]="titleAlert"
+        [nzCloseable]="true"
+        *ngIf="errorMessage"
+      ></nz-alert>
+
+      <div class="flex justify-center gap-16">
+        <a nz-button nzType="default" nzSize="large" routerLink="/">
+          {{ 'BUTTONS.LABELS.BACK_HOME' | translate }}
+        </a>
+        <button
+          nz-button
+          type="button"
+          nzType="primary"
+          nzSize="large"
+          [disabled]="isWaiting"
+          [nzLoading]="isSendingPetition"
+          (click)="sendVerification()"
+        >
+          {{ 'BUTTONS.LABELS.RESEND_VERIFICATION' | translate }}
+          {{ isWaiting ? '(' + (segundos | number: '2.0-0') + 's)' : '' }}
+        </button>
+      </div>
+    </div>
+
+    <img src="assets/images/auth/registro-completado.svg" height="400px" />
+  </div>
+</section>
+
+<ng-template #titleAlert>
+  <span class="text-base">{{ errorMessage }}</span>
+</ng-template>

@@ -1,0 +1,17 @@
+<div class="flex-column">
+  <div class="flex flex-wrap items-center justify-space-between">
+    <h5 class="text-purple-3">
+      {{ dataItemCarrito.cuota!.itemCatalogoItemNombre }}
+    </h5>
+    <h4 class="text-purple-3">
+      {{ dataItemCarrito.cuota!.itemCatalogoMonedaSimbolo }}
+      {{ dataItemCarrito.precioTotal | number: '.2-2' }}
+    </h4>
+  </div>
+
+  <span class="text-primary-4">
+    Cuota #{{ dataItemCarrito.cuota!.numero }}
+  </span>
+</div>
+
+<nz-divider></nz-divider>

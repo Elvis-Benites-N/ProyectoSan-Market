@@ -1,0 +1,226 @@
+<safety-call (retry)="cargarData()">
+  <div class="card p-24">
+    <div class="flex flex-wrap gap-24">
+      <!-- TITULO DE FILTROS -->
+      <div class="flex-column" style="gap: 4px">
+        <div class="flex items-center gap-8">
+          <icon name="filtros" class="text-primary-5"></icon>
+          <p class="text-primary-5" style="flex: 1 1 200px">Filtros</p>
+          <button
+            nz-button
+            nzShape="circle"
+            nzType="text"
+            class="flex items-center justify-center"
+            (click)="resetear()"
+          >
+            <icon name="basura" class="text-primary-5"></icon>
+          </button>
+        </div>
+        <div class="background-primary-5 w100" style="height: 1px"></div>
+      </div>
+
+      <div
+        *ngIf="
+          !datosMaestrosCargado;
+          then cargandoMaestrosTemplate;
+          else datosMaestrosCargadoTemplate
+        "
+      ></div>
+
+      <ng-template #cargandoMaestrosTemplate>
+        <p>cargando...</p>
+      </ng-template>
+
+      <ng-template #datosMaestrosCargadoTemplate>
+        <div class="flex flex-wrap gap-16">
+          <!-- BUSCADOR -->
+          <nz-form-item style="flex: 1 1 600px">
+            <nz-form-control nzErrorTip="Busca una persona">
+              <nz-input-group nzSearch [nzSuffix]="suffixIconButton">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Escribe el nombre de un ítem"
+                  [formControl]="formulario.controls.itemNombre"
+                />
+
+                <ng-template #suffixIconButton>
+                  <icon name="search"></icon>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- SLIDER  -->
+          <div
+            class="w100 flex background-primary-6"
+            style="
+              height: 36px;
+              padding: 0 4px;
+              border-radius: 24px;
+              position: relative;
+            "
+          >
+            <input
+              type="range"
+              id="slider"
+              min="1"
+              max="4"
+              step="1"
+              [formControl]="formulario.controls.tipoFiltroFecha"
+            />
+            <div
+              class="flex items-center h100 justify-space-between"
+              style="
+                position: absolute;
+                pointer-events: none;
+                width: calc(100% - 8px);
+              "
+            >
+              <span
+                class="text-center"
+                style="width: 76px"
+                [ngClass]="{
+                  'text-primary-3': formulario.value.tipoFiltroFecha !== 1
+                }"
+                >1 día</span
+              >
+              <span
+                class="text-center"
+                style="width: 76px"
+                [ngClass]="{
+                  'text-primary-3': formulario.value.tipoFiltroFecha !== 2
+                }"
+                >7 días</span
+              >
+              <span
+                class="text-center"
+                style="width: 76px"
+                [ngClass]="{
+                  'text-primary-3': formulario.value.tipoFiltroFecha !== 3
+                }"
+                >15 días</span
+              >
+              <span
+                class="text-center"
+                style="width: 76px"
+                [ngClass]="{
+                  'text-primary-3': formulario.value.tipoFiltroFecha !== 4
+                }"
+                >30+ días</span
+              >
+            </div>
+          </div>
+
+          <!-- ESTADO DE CUOTAS -->
+          <div class="flex-column gap-8" style="flex: 1 1 300px">
+            <p class="text-subordinate">Estado de cuotas</p>
+
+            <div class="flex flex-wrap gap-8">
+              <button
+                class="pointer flex flex-wrap gap-8 items-center"
+                [ngClass]="{
+                  'boton-unselected':
+                    !formulario.value.estadoCuotaIds!.includes(estadoCuota.id),
+                  'boton-selected': formulario.value.estadoCuotaIds!.includes(
+                    estadoCuota.id
+                  )
+                }"
+                type="button"
+                (click)="toggleEstadoCuota(estadoCuota.id)"
+                *ngFor="let estadoCuota of datosMaestros!.estadosCuota"
+              >
+                <icon
+                  name="check"
+                  *ngIf="
+                    formulario.value.estadoCuotaIds!.includes(estadoCuota.id)
+                  "
+                ></icon>
+                {{ estadoCuota.label }}
+              </button>
+              <button
+                class="background-light flex gap-8 items-center text-subordinate pointer"
+                style="border: none; padding: 4px 12px; border-radius: 24px"
+                (click)="limpiarEstadoCuota()"
+              >
+                <icon name="borrador" class="text-subordinate"></icon>
+                Borrar todo
+              </button>
+            </div>
+          </div>
+
+          <!-- TIPO DE ITEM -->
+          <div class="flex-column gap-8" style="flex: 1 1 300px">
+            <p class="text-subordinate">Tipo de ítem</p>
+
+            <div class="flex flex-wrap gap-8">
+              <button
+                class="pointer flex flex-wrap gap-8 items-center"
+                [ngClass]="{
+                  'boton-unselected': !formulario.value.tipoItemIds!.includes(
+                    tipoItem.id
+                  ),
+                  'boton-selected': formulario.value.tipoItemIds!.includes(
+                    tipoItem.id
+                  )
+                }"
+                type="button"
+                (click)="toggleTipoItem(tipoItem.id)"
+                *ngFor="let tipoItem of tiposDeItem"
+              >
+                <icon
+                  name="check"
+                  *ngIf="formulario.value.tipoItemIds!.includes(tipoItem.id)"
+                ></icon>
+                {{ tipoItem.label }}
+              </button>
+              <button
+                class="background-light flex gap-8 items-center text-subordinate pointer"
+                style="border: none; padding: 4px 12px; border-radius: 24px"
+                (click)="limpiarTipoItem()"
+              >
+                <icon name="borrador" class="text-subordinate"></icon>
+                Borrar todo
+              </button>
+            </div>
+          </div>
+
+          <!-- ESTADO DE ASIGNACIÓN -->
+          <div class="flex-column gap-8" style="flex: 1 1 300px">
+            <p class="text-subordinate">Estado de la asignación</p>
+
+            <div class="flex flex-wrap gap-8">
+              <button
+                class="pointer flex flex-wrap gap-8 items-center"
+                [ngClass]="{
+                  'boton-unselected':
+                    !formulario.value.estadoDeudaIds!.includes(estado.id),
+                  'boton-selected': formulario.value.estadoDeudaIds!.includes(
+                    estado.id
+                  )
+                }"
+                type="button"
+                *ngFor="let estado of datosMaestros!.estados"
+                (click)="toggleEstado(estado.id)"
+              >
+                <icon
+                  name="check"
+                  *ngIf="formulario.value.estadoDeudaIds!.includes(estado.id)"
+                ></icon>
+                {{ estado.label }}
+              </button>
+              <button
+                class="background-light flex gap-8 items-center text-subordinate pointer"
+                style="border: none; padding: 4px 12px; border-radius: 24px"
+                (click)="limpiarEstado()"
+              >
+                <icon name="borrador" class="text-subordinate"></icon>
+                Borrar todo
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</safety-call>

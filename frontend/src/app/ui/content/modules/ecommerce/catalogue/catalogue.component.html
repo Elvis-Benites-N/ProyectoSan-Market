@@ -1,0 +1,13 @@
+<div class="flex-column">
+  <safety-call (retry)="cargarData()">
+    <card-items
+      [esPagina]="true"
+      class="animate__animated animate__fadeIn"
+      [paginacionResponse]="paginacionResponse"
+      (cambiarPagina)="cambiarPagina($event)"
+      (cambiarTamanio)="cambiarTamanio($event)"
+    ></card-items>
+  </safety-call>
+</div>
+<!-- <nz-space nzDirection="vertical" class="w100" [nzSize]="24"> -->
+<!-- </nz-space> -->

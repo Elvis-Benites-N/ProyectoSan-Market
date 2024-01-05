@@ -1,0 +1,74 @@
+<section
+  id="container"
+  class="h100-screen flex items-center justify-center gap-40 p-40"
+>
+  <img
+    src="assets/images/auth/verificacion.svg"
+    alt="Verificando tu cuenta"
+    height="400px"
+  />
+  <div
+    *ngIf="
+      estaVerificandoCuenta;
+      then verificandoCuenta;
+      else verificacionCompleta
+    "
+  ></div>
+</section>
+
+<!-- TEMPLATES -->
+
+<!-- VERIFICACIÓN EN CURSO TEMPLATE -->
+<ng-template #verificandoCuenta>
+  <div class="animate__animated animate__fadeIn flex-column gap-12">
+    <div class="flex gap-24 items-center">
+      <img
+        id="rotating-image"
+        src="assets/images/auth/verificando.png"
+        alt="Espera la verificación"
+        height="100px"
+      />
+      <div id="loading">
+        <span
+          [attr.data-text]="letra"
+          *ngFor="let letra of 'Verificando...'.split('')"
+          >{{ letra }}</span
+        >
+      </div>
+    </div>
+
+    <div class="text-info">
+      <h2>Estamos en proceso de validar tu cuenta</h2>
+      <h4>
+        Por favor, espera unos segundos mientras completamos este proceso
+        automáticamente.
+      </h4>
+    </div>
+  </div>
+</ng-template>
+
+<!-- VERIFICACIÓN COMPLETA TEMPLATE -->
+<ng-template #verificacionCompleta>
+  <div
+    class="animate__animated animate__fadeIn flex-column gap-12 items-center"
+  >
+    <div class="flex gap-24 items-center">
+      <img
+        src="assets/images/auth/check-yellow.svg"
+        alt="Confirmación lista"
+        height="100px"
+      />
+      <p class="text-primary-5">Tu cuenta ha sido verificada</p>
+    </div>
+
+    <div class="text-info flex-column gap-8">
+      <h4>
+        Inicia sesión con tus credenciales registradas para que puedas disfrutar
+        de los beneficios de San Market
+      </h4>
+      <a routerLink="/auth" nz-button nzSize="large" nzType="primary" style="align-self: center;">
+        Iniciar sesión
+      </a>
+    </div>
+  </div>
+</ng-template>

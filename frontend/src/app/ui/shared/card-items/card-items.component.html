@@ -1,0 +1,56 @@
+<div
+  *ngIf="
+    !paginacionResponse;
+    then cargandoDataTemplate;
+    else dataCargadaTemplate
+  "
+></div>
+
+<ng-template #cargandoDataTemplate>
+  <div class="flex flex-wrap justify-center gap-items">
+    <card-skeleton *ngFor="let e of '0'.repeat(12).split('')"></card-skeleton>
+  </div>
+</ng-template>
+
+<ng-template #dataCargadaTemplate>
+  <div class="flex-column gap-24">
+    <!-- TOP PAGINATION -->
+    <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+
+    <!-- ITEMS -->
+    <div class="flex flex-wrap justify-center gap-items">
+      <card-item
+        style="flex: 1 1 400px; max-width: 400px"
+        [item]="item"
+        *ngFor="let item of paginacionResponse?.data"
+      ></card-item>
+    </div>
+
+    <!-- BOTTOM PAGINATION -->
+    <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+  </div>
+
+  <!-- TEMPLATE PAGINACION -->
+  <ng-template #paginacion>
+    <nz-pagination
+      [nzPageIndex]="paginacionResponse!.page"
+      [nzTotal]="paginacionResponse!.totalData"
+      [nzShowTotal]="total"
+      nzSize="small"
+      [nzPageSize]="paginacionResponse!.itemsPerPage"
+      nzShowSizeChanger
+      (nzPageIndexChange)="nzPageIndexChange($event)"
+      (nzPageSizeChange)="nzPageSizeChange($event)"
+      class="text-center"
+      *ngIf="paginacionResponse!.totalData > 0"
+    >
+    </nz-pagination>
+
+    <ng-template #total let-range="range" let-total>
+      <span
+        >{{ range[0] }}-{{ range[1] }} de
+        {{ paginacionResponse!.totalData }} item(s)</span
+      >
+    </ng-template>
+  </ng-template>
+</ng-template>

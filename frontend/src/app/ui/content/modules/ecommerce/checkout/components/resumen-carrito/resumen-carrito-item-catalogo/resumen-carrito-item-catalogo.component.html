@@ -1,0 +1,22 @@
+<div class="flex-column">
+  <div class="flex flex-wrap items-center justify-space-between">
+    <h5 class="text-purple-3">
+      {{ dataItemCarrito.itemCatalogo!.itemNombre }}
+    </h5>
+    <h4 class="text-purple-3">
+      {{ dataItemCarrito.itemCatalogo!.monedaSimbolo }}
+      {{ dataItemCarrito.precioTotal | number: '.2-2' }}
+    </h4>
+  </div>
+
+  <div class="flex flex-wrap justify-space-between">
+    <span class="text-primary-4">Cantidad: {{ dataItemCarrito.cantidad }}</span>
+    <span class="text-primary-5"
+      >{{ dataItemCarrito.itemCatalogo!.monedaSimbolo }}
+      {{ dataItemCarrito.itemCatalogo!.itemPrecio | number: '.2-2' }}
+      c/u
+    </span>
+  </div>
+</div>
+
+<nz-divider></nz-divider>

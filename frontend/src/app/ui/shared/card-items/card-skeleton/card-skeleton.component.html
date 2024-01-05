@@ -1,0 +1,81 @@
+<div
+  class="card"
+  style="width: 400px; height: 200px; position: relative; padding: 16px"
+>
+  <div class="flex-column gap-16">
+    <div class="flex-column" style="gap: 4px">
+      <!-- TITULO Y CATEGORIA -->
+      <div class="flex gap-16">
+        <!-- TITULO -->
+        <nz-skeleton-element
+          nzType="input"
+          [nzActive]="true"
+          style="height: 32px; flex: 1 1"
+          class="border-text-skeleton"
+        ></nz-skeleton-element>
+
+        <!-- CATEGORIA -->
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 24px;
+            overflow: hidden;
+            height: 32px;
+            width: 120px;
+          "
+        ></nz-skeleton-element>
+      </div>
+
+      <nz-divider></nz-divider>
+    </div>
+
+    <div class="flex-column" style="gap: 4px">
+      <!-- FACULTAD -->
+      <nz-skeleton-element
+        nzType="input"
+        [nzActive]="true"
+        class="border-text-skeleton"
+        style="height: 24px"
+      ></nz-skeleton-element>
+      <div class="flex" style="gap: 4px">
+        <div
+          style="
+            border-left: 1px solid rgba(190, 190, 190, 0.6);
+            border-bottom: 1px solid rgba(190, 190, 190, 0.6);
+            width: 8px;
+            height: 16px;
+          "
+        ></div>
+        <!-- UNIDAD -->
+        <nz-skeleton-element
+          nzType="input"
+          [nzActive]="true"
+          class="border-text-skeleton"
+          style="height: 24px; flex: 1 1"
+        ></nz-skeleton-element>
+      </div>
+    </div>
+
+    <nz-skeleton-element
+      nzType="input"
+      [nzActive]="true"
+      class="border-text-skeleton"
+      style="height: 32px; width: 140px"
+    ></nz-skeleton-element>
+  </div>
+
+  <!-- BOTON -->
+  <div
+    class="background-primary-5 text-inverse flex justify-center"
+    style="
+      right: 0;
+      bottom: 0;
+      width: 160px;
+      height: 36px;
+      position: absolute;
+      border-radius: 10px 0 10px 0;
+    "
+  >
+    ...
+  </div>
+</div>

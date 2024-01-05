@@ -1,0 +1,161 @@
+#auth-container {
+  background-image: url('^assets/images/auth/unmsm.svg');
+  background-size: cover;
+  background-position: center center;
+}
+
+#auth-card {
+  width: 84%;
+  max-width: 1200px;
+  height: 90%;
+  max-height: 700px;
+  margin: auto;
+  position: relative;
+  overflow: visible;
+}
+
+#auth-card-bg {
+  height: 86%;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0px 0px 80px 20px rgba(15, 123, 133, 0.14),
+    inset 0px 2px 4px rgba(0, 0, 0, 0.04),
+    inset -2px -7px 7px rgba(0, 0, 0, 0.4),
+    inset 8px 8px 12px #ffffff9c;
+  backdrop-filter: blur(40px);
+}
+
+#login-container {
+  left: 6%;
+  z-index: 2;
+  background: linear-gradient(270deg, #014b52 -20.34%, #081e5b 100%);
+}
+
+#register-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  background: linear-gradient(270deg, #081e5b 0%, #014b52 120.2%);
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  padding: 72px;
+  transition: all 0.6s ease-in-out;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 24px 24px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+}
+
+#overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+#overlay {
+  position: relative;
+  left: -100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel {
+  position: absolute;
+  padding: 0 40px;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  justify-content: space-evenly;
+  color: var(--neutral-lightest-color);
+  gap: 96px;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+  align-items: start;
+  text-align: start;
+  padding: 100px 140px 100px 80px;
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+  align-items: flex-end;
+  text-align: end;
+  padding: 100px 80px 100px 140px;
+}
+
+.button-catalog {
+  position: absolute;
+  top: 0;
+  width: 42px;
+  height: 42px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.button-catalog:hover {
+  width: 188px;
+}
+
+.button-icon {
+  font-size: 20px;
+  padding: 4px 8px;
+}
+
+:host ::ng-deep .ant-btn.ant-btn-background-ghost {
+  background-color: #c9c9c962;
+}
+
+:host ::ng-deep .ant-btn.ant-btn-background-ghost:hover,
+.ant-btn.ant-btn-background-ghost:focus {
+  border-color: #fff;
+  color: #fff;
+  background-color: #c9c9c97c;
+}
+
+/* ANIMACION */
+#auth-card.right-panel-active #login-container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+#auth-card.right-panel-active #register-container {
+  transform: translateX(88%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+#auth-card.right-panel-active #overlay-container {
+  transform: translateX(-100%);
+}
+#auth-card.right-panel-active #overlay {
+  transform: translateX(50%);
+}
+#auth-card.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+#auth-card.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}

@@ -1,0 +1,70 @@
+<div class="flex-column gap-24">
+  <h4>Asignaciones institucionales</h4>
+
+  <div
+    id="main-container"
+    class="flex flex-wrap"
+    style="align-items: flex-start"
+  >
+    <!-- SECCION DEUDAS -->
+    <section id="section-deudas" style="flex: 1 1 1000px">
+      <safety-call (retry)="cargarData()">
+        <div class="flex-column gap-24">
+          <div
+            *ngIf="
+              !paginacionResponse;
+              then cargandoDataTemplate;
+              else dataCargadaTemplate
+            "
+          ></div>
+
+          <ng-template #cargandoDataTemplate>
+            <payment-assigned-skeleton
+              *ngFor="let e of '0'.repeat(5).split('')"
+            ></payment-assigned-skeleton>
+          </ng-template>
+
+          <ng-template #dataCargadaTemplate>
+            <!-- TOP PAGINATION -->
+            <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+            <payment-assigned
+              [deuda]="deuda"
+              *ngFor="let deuda of paginacionResponse!.data"
+            ></payment-assigned>
+            <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+          </ng-template>
+        </div>
+      </safety-call>
+    </section>
+
+    <!-- SECCION FILTROS -->
+    <section id="section-filtros">
+      <filters [formulario]="formulario" (onFilterChange)="cargarData()"></filters>
+    </section>
+  </div>
+</div>
+
+<!-- TEMPLATE PAGINACION -->
+<ng-template #paginacion>
+  <nz-pagination
+    [nzPageIndex]="paginacionResponse!.page"
+    [nzTotal]="paginacionResponse!.totalData"
+    [nzShowTotal]="total"
+    [nzPageSizeOptions]="[6,12,24,36,48]"
+    nzSize="small"
+    [nzPageSize]="paginacionResponse!.itemsPerPage"
+    nzShowSizeChanger
+    (nzPageIndexChange)="cambiarPagina($event)"
+    (nzPageSizeChange)="cambiarTamanio($event)"
+    class="text-center"
+    *ngIf="paginacionResponse!.totalData > 0"
+  >
+  </nz-pagination>
+
+  <ng-template #total let-range="range" let-total>
+    <span
+      >{{ range[0] }}-{{ range[1] }} de
+      {{ paginacionResponse!.totalData }} asignacion(es)</span
+    >
+  </ng-template>
+</ng-template>

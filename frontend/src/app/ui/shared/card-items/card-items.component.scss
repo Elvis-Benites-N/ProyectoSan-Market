@@ -1,0 +1,9 @@
+.gap-items{
+    gap: 24px;
+}
+
+@media only screen and (min-width: 1380px) {
+    .gap-items{
+        gap: 40px;
+    }
+}

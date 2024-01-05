@@ -1,0 +1,281 @@
+<article class="card p-24">
+  <div id="article-content" class="flex flex-wrap">
+    <!-- TIPO Y NOMBRE ITEM -->
+    <div class="flex-column gap-16" style="flex: 1 1 420px">
+      <!-- TIPO DE ITEM -->
+      <tag-tipo-item
+        [tipoItemId]="deuda.tipoItemId"
+        [tipoItemDescripcion]="deuda.tipoItemDescripcion"
+      ></tag-tipo-item>
+
+      <div class="flex-column">
+        <p>{{ deuda.itemNombre }}</p>
+        <div class="flex gap-8 items-center">
+          <icon class="text-subordinate" name="facultad"></icon>
+          <p class="text-subordinate">
+            {{ deuda.unidadPadreNivel2Descripcion }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- MONTO -->
+    <div class="flex-column justify-center" style="flex: 0 1 120px">
+      <p class="text-right text-subordinate" *ngIf="deuda.montoDescuento > 0">
+        <del
+          >{{ deuda.monedaSimbolo }} {{ deuda.montoBase | number: '.2-2' }}</del
+        >
+      </p>
+      <h3 class="text-primary-6 text-right">
+        {{ deuda.monedaSimbolo }} {{ deuda.montoTotal | number: '.2-2' }}
+      </h3>
+    </div>
+    <!-- SECCION CUOTAS -->
+    <div class="flex-column gap-16" style="flex: 0 1 200px">
+      <div class="flex gap-8 items-center">
+        <icon class="text-primary-6" name="cuota"></icon>
+        <p>{{ deuda.cantidadCuotas }} cuotas</p>
+      </div>
+      <div class="flex-column gap-8">
+        <div class="flex gap-8 items-center">
+          <icon
+            name="cuota-pendiente"
+            [ngClass]="{
+              'text-danger':
+                EstadoCuotaType.Vencido === deuda.primeraCuotaNoPagadaEstadoId,
+              'text-subordinate':
+                EstadoCuotaType.Vencido !== deuda.primeraCuotaNoPagadaEstadoId
+            }"
+          ></icon>
+          <small
+            [ngClass]="{
+              'text-danger':
+                EstadoCuotaType.Vencido === deuda.primeraCuotaNoPagadaEstadoId,
+              'text-subordinate':
+                EstadoCuotaType.Vencido !== deuda.primeraCuotaNoPagadaEstadoId
+            }"
+          >
+            {{
+              EstadoCuotaType.Vencido === deuda.primeraCuotaNoPagadaEstadoId
+                ? 'vencida desde'
+                : 'por vencer el'
+            }}
+            {{ deuda.primeraCuotaNoPagadaFecha | date: 'dd/MM/yyyy' }}</small
+          >
+        </div>
+        <div class="flex gap-8 items-center" *ngIf="deuda.montoMora > 0">
+          <icon class="text-danger" name="penalizacion"></icon>
+          <small class="text-danger"
+            >{{ deuda.monedaSimbolo }}
+            {{ deuda.montoMora | number: '.2-2' }} por mes de retraso</small
+          >
+        </div>
+      </div>
+    </div>
+    <!-- ESTADO Y DETALLE -->
+    <div
+      class="flex-column justify-space-between gap-16"
+      style="flex: 0 1 154px"
+    >
+      <!-- ESTADO ASIGNACION -->
+      <nz-tag
+        [nzColor]="
+          deuda.estadoDeudaId === EstadoDeudaType.Pendiente
+            ? 'warning'
+            : 'success'
+        "
+        class="text-center"
+        >{{ deuda.estadoDeudaDescripcion }}</nz-tag
+      >
+      <!-- BOTON DETALLE -->
+      <button
+        id="boton-detalle"
+        nz-button
+        nzType="primary"
+        class="flex gap-8 items-center justify-center background-purple-3 border-purple-3"
+        nzShape="round"
+        (click)="obtenerDetalleCuotas()"
+      >
+        {{ mostrarDetalleAsignacion ? 'Ocultar cuotas' : 'Ver cuotas' }}
+        <icon [name]="mostrarDetalleAsignacion ? 'arriba' : 'abajo'"></icon>
+      </button>
+    </div>
+    <!-- DETALLE CUOTAS -->
+    <nz-collapse nzGhost style="flex: 1 1 1000px">
+      <nz-collapse-panel
+        [nzHeader]="undefined"
+        [nzShowArrow]="false"
+        [nzActive]="mostrarDetalleAsignacion"
+      >
+        <div
+          *ngIf="
+            !detalleDeuda;
+            then cargandoCuotasTemplates;
+            else cuotasCargadasTemplate
+          "
+        ></div>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+</article>
+
+<ng-template #cargandoCuotasTemplates>
+  <div class="flex flex-wrap gap-8">
+    <!-- CUOTA PROXIMA A VENCER -->
+    <div class="flex-column gap-24" style="flex: 0 1 300px">
+      <div class="flex-column gap-8">
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 16px;
+            overflow: hidden;
+            height: 16px;
+            width: 140px;
+          "
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 12px;
+            overflow: hidden;
+            height: 36px;
+            width: 110px;
+          "
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 24px;
+            overflow: hidden;
+            height: 24px;
+            width: 100px;
+          "
+        ></nz-skeleton-element>
+      </div>
+      <div class="flex gap-8">
+        <div class="flex-column gap-8" style="flex-grow: 1">
+          <nz-skeleton-element
+            nzType="input"
+            style="
+              border-radius: 24px;
+              overflow: hidden;
+              height: 24px;
+              width: 110px;
+            "
+          ></nz-skeleton-element>
+          <nz-skeleton-element
+            nzType="input"
+            style="
+              border-radius: 24px;
+              overflow: hidden;
+              height: 24px;
+              width: 50px;
+            "
+            [nzActive]="true"
+          ></nz-skeleton-element>
+        </div>
+        <div class="flex-column gap-8" style="flex-grow: 1">
+          <nz-skeleton-element
+            nzType="input"
+            style="
+              border-radius: 24px;
+              overflow: hidden;
+              height: 24px;
+              width: 110px;
+            "
+          ></nz-skeleton-element>
+          <nz-skeleton-element
+            nzType="input"
+            style="
+              border-radius: 24px;
+              overflow: hidden;
+              height: 24px;
+              width: 50px;
+            "
+            [nzActive]="true"
+          ></nz-skeleton-element>
+        </div>
+      </div>
+      <div class="flex-column gap-8">
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 24px;
+            overflow: hidden;
+            height: 24px;
+            width: 150px;
+          "
+        ></nz-skeleton-element>
+        <nz-skeleton-element
+          nzType="input"
+          style="
+            border-radius: 24px;
+            overflow: hidden;
+            height: 24px;
+            width: 60%;
+          "
+          [nzActive]="true"
+        ></nz-skeleton-element>
+      </div>
+    </div>
+    <!-- DIVIDER -->
+    <nz-divider nzType="vertical" style="height: auto"></nz-divider>
+    <!-- LISTADO DE CUOTAS -->
+    <div class="flex-column gap-16" style="flex: 1 1 400px">
+      <fee-skeleton></fee-skeleton>
+      <fee-skeleton></fee-skeleton>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #cuotasCargadasTemplate>
+  <div class="animate__animated animate__fadeIn flex flex-wrap gap-8">
+    <!-- CUOTA PROXIMA A VENCER -->
+    <div class="flex-column gap-24" style="flex: 0 1 300px">
+      <div class="flex-column">
+        <small class="text-subordinate">Cuota más próxima a vencer</small>
+        <h4 *ngIf="deudaExtra!.cuotaProximaAVencer">
+          Cuota #{{ deudaExtra!.cuotaProximaAVencer.numero }}
+        </h4>
+        <h4 *ngIf="!deudaExtra!.cuotaProximaAVencer">-</h4>
+        <p class="text-danger" *ngIf="deudaExtra!.cuotaProximaAVencer">
+          vence en
+          {{ deudaExtra!.cuotaProximaAVencer.fechaMaximaPago | nextTime }}
+        </p>
+      </div>
+      <div class="flex gap-8">
+        <div class="flex-column" style="flex-grow: 1">
+          <p class="text-subordinate">Monto pagado</p>
+          <p>
+            {{ deuda.monedaSimbolo }}
+            {{ deudaExtra!.montoPagado | number: '.2-2' }}
+          </p>
+        </div>
+        <div class="flex-column" style="flex-grow: 1">
+          <p class="text-subordinate">Monto pendiente</p>
+          <p>
+            {{ deuda.monedaSimbolo }}
+            {{ deudaExtra!.montoPendiente | number: '.2-2' }}
+          </p>
+        </div>
+      </div>
+      <div class="flex-column">
+        <p class="text-subordinate">Progreso de la asignación</p>
+        <nz-progress
+          [nzPercent]="deudaExtra!.porcentaje"
+          [nzSteps]="8"
+          nzStrokeColor="#4b9ca3"
+        ></nz-progress>
+      </div>
+    </div>
+    <!-- DIVIDER -->
+    <nz-divider nzType="vertical" style="height: auto"></nz-divider>
+    <!-- LISTADO DE CUOTAS -->
+    <div class="flex-column gap-16" style="flex: 1 1 400px">
+      <fee
+        [cuota]="fee"
+        [monedaSimbolo]="deuda.monedaSimbolo"
+        *ngFor="let fee of detalleDeuda!.cuotas"
+      ></fee>
+    </div>
+  </div>
+</ng-template>

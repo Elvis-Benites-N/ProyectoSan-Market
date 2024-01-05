@@ -1,0 +1,71 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ant-divider-horizontal {
+  margin: 0;
+}
+
+.ant-skeleton-element {
+  width: 100%;
+}
+
+.ant-skeleton-element .ant-skeleton-input {
+  min-width: 24px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ant-input-prefix {
+  margin-right: 6px !important;
+}
+
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(
+    .ant-input-affix-wrapper-borderless
+  ).ant-input-affix-wrapper,
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(
+    .ant-input-affix-wrapper-borderless
+  ).ant-input-affix-wrapper:hover {
+  border-radius: 10px 10px 0 0;
+}
+
+.ant-form-item-explain-error {
+  color: #f2f2f3;
+  background-color: rgba(207, 23, 32, 0.36);
+  border-radius: 0 0 10px 10px;
+  padding: 2px 12px;
+  font-size: 12px;
+}
+
+.ant-input-group-wrapper-status-error .ant-input-group-addon:first-child {
+  border-bottom-left-radius: 0;
+}
+
+.ant-input-group-wrapper-status-error > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+  border-radius: 0 10px 0 0;
+}
+
+.ant-alert-message,
+.ant-alert-icon,
+.ant-alert-close-icon .anticon-close {
+  color: #f2f2f3;
+}
+
+.ant-pagination-item {
+  border-radius: 24px;
+}
+
+.ant-pagination-item-active > a{
+  color: #fafcfd;
+}
+
+.ant-pagination-item-active:hover > a{
+  color: #fafcfd;
+}

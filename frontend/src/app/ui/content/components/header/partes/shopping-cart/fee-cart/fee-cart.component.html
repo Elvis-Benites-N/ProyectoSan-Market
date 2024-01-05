@@ -1,0 +1,63 @@
+<div class="flex-column gap-12" style="padding: 16px 0 16px 16px">
+  <!-- TITULO Y BOTON ELIMINAR -->
+  <div class="flex items-center gap-12" style="padding-right: 4px">
+    <icon
+      name="services"
+      class="text-purple-3"
+      *ngIf="
+        itemCarrito.cuota!.itemCatalogoTipoItemId === TipoItemType.Servicio
+      "
+    ></icon>
+    <icon
+      name="tupa"
+      class="text-purple-3"
+      *ngIf="itemCarrito.cuota!.itemCatalogoTipoItemId === TipoItemType.TUPA"
+    ></icon>
+
+    <!-- TITULO -->
+    <h5 style="width: 100%; flex-grow: 1" class="text-ellipsis text-purple-3">
+      {{ itemCarrito.cuota?.itemCatalogoItemNombre }}
+    </h5>
+
+    <!-- ELIMINAR -->
+    <button
+      nz-button
+      nzType="text"
+      (click)="clicEliminarItem()"
+      class="flex items-center gap-8"
+    >
+      <icon name="basura" class="text-primary-5"></icon>
+      <p class="text-primary-5">Eliminar</p>
+    </button>
+  </div>
+
+  <div class="flex-column gap-8" style="padding-left: 36px">
+    <!-- FACULTAD/DEPENDENCIA -->
+    <div class="flex items-center gap-8">
+      <icon name="facultad" class="text-primary-7"></icon>
+
+      <p style="width: 100%; flex-grow: 1" class="text-ellipsis text-primary-7">
+        {{ itemCarrito.cuota!.itemCatalogoUnidepPadreNivel2Descripcion }}
+      </p>
+    </div>
+
+    <!-- UNIDAD -->
+    <div class="flex items-center gap-8 text-subordinate">
+      <icon name="cuota" class="text-primary-5"></icon>
+
+      <p style="width: 100%; flex-grow: 1" class="text-ellipsis text-primary-5">
+        {{ 'Cuota' | uppercase }} #{{ itemCarrito.cuota!.numero }}
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="flex items-center justify-end"
+    style="padding-left: 36px; padding-right: 16px"
+  >
+    <h4 class="text-purple-3">
+      {{ itemCarrito.cuota!.itemCatalogoMonedaSimbolo }}
+      {{ itemCarrito.cuota!.montoTotal | number: '.2-2' }}
+    </h4>
+  </div>
+</div>

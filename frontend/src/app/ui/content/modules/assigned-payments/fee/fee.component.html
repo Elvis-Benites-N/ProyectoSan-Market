@@ -1,0 +1,107 @@
+<div
+  class="background-light p-24 flex-column gap-8"
+  style="border-radius: 24px"
+>
+  <h5 class="text-purple-3">Cuota #{{ cuota.numero }}</h5>
+  <div class="flex flex-wrap gap-16 items-center">
+    <div
+      class="flex p-12"
+      [ngClass]="{
+        'background-success-light':
+          cuota.estadoCuota.id === EstadoCuotaType.Pagado,
+        'background-danger-light':
+          cuota.estadoCuota.id === EstadoCuotaType.Vencido,
+        'background-purple-1':
+          cuota.estadoCuota.id === EstadoCuotaType.Pendiente ||
+          cuota.estadoCuota.id === EstadoCuotaType.Reservado
+      }"
+      style="border-radius: 8px; flex: 0 1"
+    >
+      <ng-container [ngSwitch]="cuota.estadoCuota.id">
+        <icon
+          name="cuota-vencida"
+          style="font-size: 20px"
+          *ngSwitchCase="EstadoCuotaType.Vencido"
+        ></icon>
+        <icon
+          name="cuota-pagada"
+          style="font-size: 20px"
+          *ngSwitchCase="EstadoCuotaType.Pagado"
+        ></icon>
+        <icon
+          name="cuota-pendiente"
+          style="font-size: 20px"
+          *ngSwitchDefault
+        ></icon>
+      </ng-container>
+    </div>
+    <div class="flex-column" style="flex: 0 1 200px">
+      <p class="text-subordinate">Monto de la cuota</p>
+      <p>{{ monedaSimbolo }} {{ cuota.montoInicial | number: '.2-2' }}</p>
+    </div>
+    <div class="flex-column" style="flex: 0 1 200px">
+      <p
+        [ngClass]="{
+          'text-danger': cuota.estadoCuota.id === EstadoCuotaType.Vencido,
+          'text-subordinate': cuota.estadoCuota.id !== EstadoCuotaType.Vencido
+        }"
+      >
+        Fecha máxima de pago
+      </p>
+      <p
+        [ngClass]="{
+          'text-danger': cuota.estadoCuota.id === EstadoCuotaType.Vencido
+        }"
+      >
+        {{ cuota.fechaMaximaPago | date: 'dd/MM/yyyy' }}
+      </p>
+    </div>
+
+    <!-- CUOTA PAGADA -->
+    <!-- <div
+      class="flex items-center gap-8"
+      style="flex: 1 1 200px; justify-content: flex-end"
+    >
+      <p class="text-success">Esta cuota ya ha sido pagada</p>
+      <icon name="circle-check" class="text-success"></icon>
+    </div> -->
+
+    <!-- CUOTA CARRITO -->
+    <div
+      class="flex items-center gap-8"
+      style="flex: 1 1 200px; justify-content: flex-end"
+      *ngIf="
+        cuota.estadoCuota.id === EstadoCuotaType.Vencido ||
+        cuota.estadoCuota.id === EstadoCuotaType.Pendiente
+      "
+    >
+      <button
+        nz-button
+        nzType="primary"
+        nzGhost
+        type="button"
+        nzShape="round"
+        class="flex items-center gap-8"
+        (click)="agregarItemCarrito()"
+        [nzLoading]="procesandoPeticion"
+      >
+        <icon name="shopping-cart"></icon>
+        {{ 'BUTTONS.LABELS.ADD_CART' | translate }}
+      </button>
+    </div>
+
+    <!-- CUOTA RESERVADA -->
+    <!-- <div
+      class="flex items-center gap-8"
+      style="flex: 1 1 200px; justify-content: flex-end"
+    >
+      <p class="text-purple-3">Esta cuota está reservada en un ticket</p>
+      <icon name="ticket-peligro" class="text-purple-3"></icon>
+    </div> -->
+  </div>
+  <div class="flex" *ngIf="cuota.montoMora > 0">
+    <p class="text-danger">
+      Penalización acumulada: {{ monedaSimbolo }} {{ cuota.montoMora }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div id="auth-container" class="flex w100-screen h100-screen">
+  <div #authCard id="auth-card" class="flex items-center justify-center">
+    <!-- BACKGROUND -->
+    <div id="auth-card-bg" class="w100"></div>
+
+    <!-- LOGIN FORM -->
+    <login id="login-container" class="form-container w50 h100 gap-24"></login>
+
+    <!-- REGISTER FORM -->
+    <register
+      id="register-container"
+      class="form-container w50 h100 gap-24"
+    ></register>
+
+    <!-- PANEL INFO DESLIZABLE -->
+    <div id="overlay-container" class="w50 h100">
+      <div id="overlay" class="h100">
+        <!-- LOGIN INFO -->
+        <aside
+          class="overlay-panel w50 h100 overlay-left"
+          style="display: flex; flex-direction: column"
+        >
+          <a
+            class="button-catalog flex items-center"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            nzSize="large"
+            routerLink="/catalogo"
+            style="left: 0"
+          >
+            <icon name="store" class="button-icon"></icon>
+            {{ 'BUTTONS.LABELS.BACK_CATALOG' | translate }}
+          </a>
+          <ng-container *ngTemplateOutlet="logoLogin"></ng-container>
+          <div class="flex-column gap-24">
+            <h2 class="text-inverse">
+              {{ 'MODULES.LOGIN.FORM.LABELS.INFO_LOGIN.TITLE' | translate }}
+            </h2>
+            <p class="text-inverse">
+              {{
+                'MODULES.LOGIN.FORM.LABELS.INFO_LOGIN.DESCRIPTION' | translate
+              }}
+            </p>
+            <button
+              nz-button
+              nzType="default"
+              nzGhost
+              (click)="cambiarPanel()"
+              nzSize="large"
+              style="align-self: flex-start"
+            >
+              {{ 'BUTTONS.LABELS.LOGIN' | translate }}
+            </button>
+          </div>
+          <ng-container *ngTemplateOutlet="botonIdiomas"></ng-container>
+        </aside>
+        <!-- REGISTER INFO -->
+        <aside
+          class="overlay-panel w50 h100 overlay-right"
+          style="display: flex; flex-direction: column"
+        >
+          <a
+            class="button-catalog flex items-center"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            nzSize="large"
+            routerLink="/catalogo"
+            style="right: 0"
+          >
+            <icon name="store" class="button-icon"></icon>
+            {{ 'BUTTONS.LABELS.BACK_CATALOG' | translate }}
+          </a>
+          <ng-container *ngTemplateOutlet="logoLogin"></ng-container>
+          <div style="display: flex; flex-direction: column" class="gap-24">
+            <h2 class="text-inverse">
+              {{
+                'MODULES.REGISTER.FORM.LABELS.INFO_REGISTER.TITLE' | translate
+              }}
+            </h2>
+            <p class="text-inverse">
+              {{
+                'MODULES.REGISTER.FORM.LABELS.INFO_REGISTER.DESCRIPTION'
+                  | translate
+              }}
+            </p>
+            <button
+              nz-button
+              nzType="default"
+              nzGhost
+              (click)="cambiarPanel()"
+              nzSize="large"
+              style="align-self: flex-end"
+            >
+              {{ 'BUTTONS.LABELS.REGISTER_NOW' | translate }}
+            </button>
+          </div>
+          <ng-container *ngTemplateOutlet="botonIdiomas"></ng-container>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTON DE IDIOMAS -->
+<ng-template #botonIdiomas>
+  <button
+    nz-button
+    nzType="default"
+    nzShape="round"
+    nzGhost
+    (click)="isOpenSelectLanguage = true"
+  >
+    <div class="flex items-center gap-8">
+      <!-- ICON -->
+      <span
+        style="display: flex"
+        [innerHTML]="
+          sanitizer.bypassSecurityTrustHtml(
+            languageProvider.currentLanguage.svg!
+          )
+        "
+      ></span>
+      <!-- FULL NAME -->
+      {{ languageProvider.currentLanguage.fullName }}
+    </div>
+  </button>
+</ng-template>
+
+<!-- LOGO -->
+<ng-template #logoLogin>
+  <img
+    src="assets/logos/logo-san-market-white.svg"
+    alt="San Market"
+    width="220"
+  />
+</ng-template>
+
+<!-- MODALES -->
+<nz-modal
+  nzCentered
+  [(nzVisible)]="isOpenSelectLanguage"
+  nzTitle="Selecciona un idioma"
+  (nzOnCancel)="isOpenSelectLanguage = false"
+  [nzFooter]="null"
+>
+  <ng-container *nzModalContent>
+    <div class="flex items-center justify-space-between">
+      <button
+        nz-button
+        nzType="text"
+        (click)="changeLanguage(language.id)"
+        *ngFor="let language of languageProvider.languages"
+      >
+        <div class="flex gap-8 items-center">
+          <!-- ICON -->
+          <span
+            [innerHTML]="sanitizer.bypassSecurityTrustHtml(language.svg!)"
+            style="display: flex"
+          ></span>
+          <!-- FULL NAME -->
+          {{ language.fullName }}
+        </div>
+      </button>
+    </div>
+  </ng-container>
+</nz-modal>

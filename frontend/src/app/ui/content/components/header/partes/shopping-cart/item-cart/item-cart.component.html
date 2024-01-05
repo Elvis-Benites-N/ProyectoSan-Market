@@ -1,0 +1,68 @@
+<div class="flex-column gap-12" style="padding: 16px 0 16px 16px;">
+  <!-- TITULO Y BOTON ELIMINAR -->
+  <div class="flex items-center gap-12" style="padding-right: 4px;">
+    <icon
+      name="services"
+      class="text-purple-3"
+      *ngIf="itemCarrito.itemCatalogo!.tipoItemId === TipoItemType.Servicio"
+    ></icon>
+    <icon
+      name="tupa"
+      class="text-purple-3"
+      *ngIf="itemCarrito.itemCatalogo!.tipoItemId === TipoItemType.TUPA"
+    ></icon>
+
+    <!-- TITULO -->
+    <h5 style="width: 100%; flex-grow: 1" class="text-ellipsis text-purple-3">
+      {{ itemCarrito.itemCatalogo!.itemNombre }}
+    </h5>
+
+    <!-- ELIMINAR -->
+    <button nz-button nzType="text" (click)="clicEliminarItem()" class="flex items-center gap-8">
+      <icon name="basura" class="text-primary-5"></icon>
+      <p class="text-primary-5">
+        Eliminar
+      </p>
+    </button>
+  </div>
+
+  <div class="flex-column gap-8" style="padding-left: 36px">
+    <!-- FACULTAD/DEPENDENCIA -->
+    <div class="flex items-center gap-8">
+      <icon name="facultad" class="text-primary-7"></icon>
+
+      <p style="width: 100%; flex-grow: 1" class="text-ellipsis text-primary-7">
+        {{ itemCarrito.itemCatalogo!.unidepPadreNivel2Descripcion }}
+      </p>
+    </div>
+
+    <!-- UNIDAD -->
+    <div class="flex items-center gap-8 text-subordinate">
+      <icon name="unidad" class="text-primary-5"></icon>
+
+      <p style="width: 100%; flex-grow: 1" class="text-ellipsis text-primary-5">
+        {{ itemCarrito.itemCatalogo!.unidepDescripcion }}
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="flex items-center justify-space-between"
+    style="padding-left: 36px; padding-right: 16px"
+  >
+    <div id="cantidad-container" class="flex items-center border-purple-1">
+      <span>Cantidad:</span>
+      <button nz-button nzType="text" nzSize="small" nzShape="circle" style="font-size: 12px;" class="flex">
+        <icon name="menos" style="margin:auto"></icon>
+      </button>
+      <span>{{ itemCarrito.cantidad }}</span>
+      <button nz-button nzType="text" nzSize="small" nzShape="circle" style="font-size: 12px;" class="flex">
+        <icon name="mas" style="margin:auto"></icon>
+      </button>
+    </div>
+    <h4 class="text-purple-3">
+      {{ itemCarrito.itemCatalogo!.monedaSimbolo }}
+      {{ itemCarrito.itemCatalogo!.itemPrecio | number: '.2-2' }}
+    </h4>
+  </div>
+</div>

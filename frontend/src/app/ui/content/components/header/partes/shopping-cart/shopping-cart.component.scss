@@ -1,0 +1,13 @@
+#contenido-popover{
+    width: 100%;
+    background-image: url('^assets/backgrounds/carrito-background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 24px;
+    flex-grow: 1;
+}
+
+::ng-deep .ant-popover-inner-content, ::ng-deep .ant-popover-title {
+    padding: 0;
+}

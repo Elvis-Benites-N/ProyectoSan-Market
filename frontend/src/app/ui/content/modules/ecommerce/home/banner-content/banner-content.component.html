@@ -1,0 +1,34 @@
+<div class="flex-column gap-24">
+  <div class="flex-colum gap-8">
+    <h1>
+      {{ 'MODULES.ECOMMERCE.HOME.LABELS.BANNER_TITLE' | translate }}
+    </h1>
+    <p>
+      {{ 'MODULES.ECOMMERCE.HOME.LABELS.BANNER_PARAGRAPH' | translate }}
+    </p>
+  </div>
+  <div class="flex flex-wrap items-center justify-center gap-16">
+    <a
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      routerLink="/catalogo"
+      class="flex items-center gap-8"
+    >
+      <icon name="shopping-cart"></icon>
+      {{ 'BUTTONS.LABELS.EXPLORER_CATALOGUE' | translate }}
+    </a>
+    <a
+      nz-button
+      nzType="default"
+      routerLink="/auth"
+      [queryParams]="{ modo: 'registro' }"
+      nzShape="round"
+      class="flex items-center gap-8"
+    >
+      <icon name="clic-emocionado"></icon>
+      {{ 'BUTTONS.LABELS.REGISTER_NOW' | translate }}
+    </a>
+    <div style="flex: 1 1 180px"></div>
+  </div>
+</div>

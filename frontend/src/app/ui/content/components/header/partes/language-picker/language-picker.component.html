@@ -1,0 +1,42 @@
+<button
+  nz-button
+  nzShape="round"
+  nz-popover
+  [nzPopoverContent]="contenidoIdiomas"
+  nzPopoverTrigger="click"
+  nzPopoverPlacement="bottom"
+  style="width: 120px"
+  class="flex items-center justify-space-between gap-8"
+>
+  <!-- ICON -->
+  <span
+    style="display: flex"
+    [innerHTML]="
+      sanitizer.bypassSecurityTrustHtml(languageProvider.currentLanguage.svg!)
+    "
+  ></span>
+  <!-- SHORT NAME -->
+  {{ languageProvider.currentLanguage.shortName }}
+  <icon name="abajo"></icon>
+</button>
+
+<!-- TEMPLATES -->
+<ng-template #contenidoIdiomas>
+  <div class="flex-column p-12 gap-8">
+    <button
+      nz-button
+      nzType="text"
+      (click)="languageProvider.setLanguage(language.id)"
+      class="flex gap-8 items-center"
+      *ngFor="let language of languageProvider.languages; let i = index"
+    >
+      <!-- ICON -->
+      <span
+        nz-icon
+        [innerHTML]="sanitizer.bypassSecurityTrustHtml(language.svg!)"
+      ></span>
+      <!-- FULL NAME -->
+      {{ language.fullName }}
+    </button>
+  </div>
+</ng-template>

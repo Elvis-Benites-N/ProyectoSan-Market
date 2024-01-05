@@ -1,0 +1,288 @@
+<form
+  nz-form
+  [formGroup]="fw.formulario.controls.informacionDeFacturacion"
+  (ngSubmit)="onSubmit()"
+  nzLayout="vertical"
+  (keydown.enter)="$event.preventDefault()"
+>
+  <div class="flex-column gap-40">
+    <div class="flex flex-wrap gap-24">
+      <section class="card p-24 flex-column gap-24" style="flex: 1 1 600px">
+        <div class="flex items-center gap-8">
+          <icon name="unidad" class="text-success"></icon>
+          <h3 class="text-success">Información de facturación</h3>
+        </div>
+
+        <div class="flex-column gap-12">
+          <nz-form-item>
+            <nz-form-label>Tipo de documento de pago:</nz-form-label>
+            <nz-form-control nzErrorTip="Selecciona tipo de documento de pago">
+              <nz-radio-group
+                nzButtonStyle="solid"
+                formControlName="tipoDeComprobante"
+              >
+                <label nz-radio-button [nzValue]="TipoComprobanteType.Boleta"
+                  >Boleta</label
+                >
+                <label nz-radio-button [nzValue]="TipoComprobanteType.Factura"
+                  >Factura</label
+                >
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <ng-container
+            *ngIf="
+              fw.formulario.getRawValue().informacionDeFacturacion
+                .tipoDeComprobante === TipoComprobanteType.Boleta
+            "
+          >
+            <nz-form-item>
+              <nz-form-label
+                nzTooltipTitle="¿Estás generando el ticket de pago para otra persona? Ingresa el número de documento de identidad de esa persona para que el comprobante se emita a su nombre."
+                nzTooltipIcon="info-circle"
+                >Número de documento de identificación:</nz-form-label
+              >
+              <nz-form-control
+                nzErrorTip="Busca una persona"
+                [nzValidateStatus]="
+                  fw.getValidateStatus(
+                    'informacionDeFacturacion.numeroDeDocumento'
+                  )
+                "
+              >
+                <nz-input-group
+                  nzSearch
+                  [nzAddOnBefore]="addOnBeforeTemplate"
+                  [nzAddOnAfter]="suffixIconButton"
+                >
+                  <ng-template #addOnBeforeTemplate>
+                    <nz-select
+                      formControlName="tipoDeDocumentoDeIdentidad"
+                      style="width: 120px"
+                    >
+                      <nz-option
+                        [nzLabel]="tipoDocumento.nombre"
+                        [nzValue]="tipoDocumento.id"
+                        *ngFor="let tipoDocumento of tiposDeDocumento"
+                      ></nz-option>
+                    </nz-select>
+                  </ng-template>
+
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="numeroDeDocumento"
+                    placeholder="Ingresa un número de documento"
+                    (keyup.enter)="buscarPersona()"
+                  />
+
+                  <ng-template #suffixIconButton>
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzSearch
+                      type="button"
+                      (click)="buscarPersona()"
+                    >
+                      <icon name="search"></icon>
+                    </button>
+                  </ng-template>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="flex flex-wrap items-center gap-12">
+              <nz-form-item style="flex: 1 1 240px">
+                <nz-form-label>Nombres:</nz-form-label>
+                <nz-form-control nzErrorTip="Selecciona">
+                  <input
+                    type="text"
+                    nz-input
+                    placeholder="Nombres (como aparece en la identificación)"
+                    formControlName="nombres"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item style="flex: 1 1 240px">
+                <nz-form-label>Apellidos:</nz-form-label>
+                <nz-form-control nzErrorTip="Selecciona">
+                  <input
+                    type="text"
+                    nz-input
+                    placeholder="Apellidos (como aparece en la identificación)"
+                    formControlName="apellidos"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              fw.formulario.getRawValue().informacionDeFacturacion
+                .tipoDeComprobante === TipoComprobanteType.Factura
+            "
+          >
+            <nz-form-item>
+              <nz-form-label
+                nzTooltipTitle="¿Estás generando el ticket de pago para otra persona? Ingresa el ruc de esa persona/empresa para que el comprobante se emita a su nombre."
+                nzTooltipIcon="info-circle"
+                >RUC:</nz-form-label
+              >
+              <nz-form-control nzErrorTip="Busca una persona">
+                <nz-input-group
+                  nzSearch
+                  [nzAddOnBefore]="addOnBeforeTemplate"
+                  [nzAddOnAfter]="suffixIconButton"
+                >
+                  <ng-template #addOnBeforeTemplate>
+                    <nz-select
+                      formControlName="tipoDeDocumentoDeIdentidad"
+                      style="width: 120px"
+                    >
+                      <nz-option nzLabel="RUC" [nzValue]="3"></nz-option>
+                    </nz-select>
+                  </ng-template>
+
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="numeroDeDocumento"
+                    placeholder="Ingresa un número de ruc"
+                    (keyup.enter)="buscarPersona()"
+                  />
+
+                  <ng-template #suffixIconButton>
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzSearch
+                      type="button"
+                      (click)="buscarPersona()"
+                    >
+                      <icon name="search"></icon>
+                    </button>
+                  </ng-template>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="flex flex-wrap items-center gap-12">
+              <nz-form-item style="flex: 1 1 240px">
+                <nz-form-label>Razón Social:</nz-form-label>
+                <nz-form-control nzErrorTip="Selecciona">
+                  <input
+                    type="text"
+                    nz-input
+                    placeholder="Razón social"
+                    formControlName="razonSocial"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item style="flex: 1 1 240px">
+                <nz-form-label>Dirección:</nz-form-label>
+                <nz-form-control nzErrorTip="Selecciona">
+                  <input
+                    type="text"
+                    nz-input
+                    placeholder="Dirección"
+                    formControlName="direccion"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </ng-container>
+
+          <nz-form-item>
+            <nz-form-label
+              nzTooltipTitle="Ingresa el correo electrónico al que deseas que se envíe el ticket de pago."
+              nzTooltipIcon="info-circle"
+              >Correo electrónico para envío del ticket:</nz-form-label
+            >
+            <nz-form-control nzErrorTip="Ingrese un email válido">
+              <input
+                type="text"
+                nz-input
+                formControlName="email"
+                placeholder="Ingrese su email"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control>
+              <label
+                nz-checkbox
+                formControlName="guardaInformacion"
+                class="text-primary-5"
+                >Guardar esta información de facturación para futuros tickets de
+                pago</label
+              >
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </section>
+
+      <section
+        class="card p-24 gap-24"
+        style="flex: 1 1 600px; max-width: 600px"
+      >
+        <div class="flex items-center gap-8">
+          <icon name="shopping-cart" class="text-success"></icon>
+          <h3 class="text-success">Resumen del Carrito</h3>
+        </div>
+
+        <div class="flex-column gap-8">
+          <ng-container *ngFor="let itemCarrito of data.carrito!.itemsCarrito">
+            <resumen-carrito-item-catalogo
+              [dataItemCarrito]="itemCarrito"
+              *ngIf="itemCarrito.itemCatalogo"
+            ></resumen-carrito-item-catalogo>
+
+            <resumen-carrito-grupo
+              [dataItemCarrito]="itemCarrito"
+              *ngIf="itemCarrito.grupo"
+            ></resumen-carrito-grupo>
+
+            <resumen-carrito-cuota
+              [dataItemCarrito]="itemCarrito"
+              *ngIf="itemCarrito.cuota"
+            ></resumen-carrito-cuota>
+          </ng-container>
+        </div>
+        <div class="flex items-center justify-space-between">
+          <h3 class="text-primary-5">Monto total:</h3>
+          <h2 class="text-success">
+            {{ data.carrito!.monedaSimbolo }}
+            {{ data.carrito!.precioTotal | number: '.2-2' }}
+          </h2>
+        </div>
+      </section>
+    </div>
+
+    <div class="flex items-center justify-center gap-16">
+      <a
+        nz-button
+        routerLink="/catalogo"
+        class="flex items-center gap-8"
+        nzShape="round"
+      >
+        <icon name="store"></icon>
+        Volver al catálogo
+      </a>
+      <button
+        nz-button
+        nzType="primary"
+        type="submit"
+        nzShape="round"
+        class="flex items-center gap-8"
+      >
+        Siguiente
+        <icon name="derecha"></icon>
+      </button>
+    </div>
+  </div>
+</form>

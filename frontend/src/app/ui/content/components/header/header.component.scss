@@ -1,0 +1,16 @@
+#custom-header {
+  padding: 0 16px;
+  height: 70px;
+  backdrop-filter: blur(12px);
+  background-color: #f1f5f9ba;
+}
+
+:host ::ng-deep .ant-menu-horizontal {
+  background: transparent;
+  border: none;
+}
+
+::ng-deep .ant-menu-inline {
+  border: none;
+  background-color: transparent;
+}

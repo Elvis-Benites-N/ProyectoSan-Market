@@ -1,0 +1,31 @@
+<div class="card-benefit p-24 flex-column h100">
+  <div
+    class="flex"
+    style="
+      width: 70%;
+      height: 160px;
+      position: relative;
+      bottom: 142px;
+      align-self: center;
+    "
+  >
+    <img
+      [src]="benefit.img"
+      alt="Beneficio"
+      class="w100 h100 card-benefit__image"
+      style="
+        margin: auto;
+        object-position: bottom;
+        object-fit: contain;
+        position: absolute;
+        z-index: 10;
+      "
+    />
+    <div class="card-benefit__background w100 h100"></div>
+  </div>
+
+  <div class="flex-column gap-8" style="margin-top: -128px">
+    <h5 class="text-primary-5 text-center">{{ benefit.titulo }}</h5>
+    <p class="text-center">{{ benefit.subTitulo }}</p>
+  </div>
+</div>

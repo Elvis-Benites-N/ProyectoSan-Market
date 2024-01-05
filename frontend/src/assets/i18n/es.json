@@ -1,0 +1,109 @@
+{
+  "MODULES": {
+    "LOGIN": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "¡Hola de nuevo!",
+          "SUBTITLE": "Accede a tu cuenta para seguir conectado",
+          "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+          "LOGIN_DIRECT_INSTITUTIONAL": "Si tienes correo institucional, inicia sesión directamente con tus credenciales sin necesidad de registrarte.",
+          "INFO_LOGIN": {
+            "TITLE": "¿Ya tienes una cuenta?",
+            "DESCRIPTION": "Inicia sesión para que puedas seguir explorando los beneficios que te ofrece San Market"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Ingresa tu correo",
+          "PASSWORD": "Ingresa tu contraseña"
+        },
+        "ERRORS": {
+          "EMAIL": "Ingresa una dirección de correo electrónico válida",
+          "PASSWORD": "La contraseña es demasiado corta"
+        }
+      }
+    },
+    "REGISTER": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "¡Bienvenido a San Market!",
+          "SUBTITLE": "Ingresa tus datos para crear tu cuenta",
+          "WHY_FACULTY_DEPENDENCE": "¿Por qué debo elegir una Facultad o Dependencia?",
+          "ANSWER_FACULTY_DEPENDENCE": "Que elijas una Facultad o Dependencia nos ayudará a mostrarte ítems de tu interés",
+          "REMEMBER_NOT_INSTITUTIONAL": "¡Recuerda! No debes usar correos institucionales para registrarte.",
+          "INFO_REGISTER": {
+            "TITLE": "¿Aún no tienes una cuenta?",
+            "DESCRIPTION": "Regístrate y crea una cuenta en San Market para poder disfrutar de todas las funcionalidades"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Correo electrónico*",
+          "PASSWORD": "Contraseña*",
+          "CONFIRM_PASSWORD": "Confirmar contraseña*",
+          "NAME": "Nombres*",
+          "LASTNAME": "Apellidos*",
+          "FACULTY_DEPENDENCE": "Selecciona una Facultad o Dependencia"
+        },
+        "ERRORS": {
+          "EMAIL": "Ingresa una dirección de correo electrónico válida",
+          "PASSWORD": "La contraseña es muy corta",
+          "CONFIRM_PASSWORD": "La contraseña es muy corta",
+          "NAME": "Ingresa tus nombres",
+          "LASTNAME": "Ingresa tus apellidos"
+        }
+      }
+    },
+    "ECOMMERCE": {
+      "HOME": {
+        "TITLE": "Inicio",
+        "LABELS": {
+          "BANNER_TITLE": "¡Bienvenido a San Market!",
+          "BANNER_PARAGRAPH": "Simplifica tus trámites y ahorra tiempo con San Market: la plataforma de pagos de la UNMSM. Paga en línea matrículas, talleres, eventos y más, de forma fácil y conveniente.",
+          "FEATURED_ITEMS_TITLE": "Destacados del catálogo",
+          "FEATURED_ITEMS_DESCRIPTION": "En nuestra sección de destacados del catálogo encontrarás una selección exclusiva de los ítems más populares cuidadosamente elegidos para ti.",
+          "FEATURED_GROUPS_TITLE": "Grupos más destacados",
+          "FEATURED_GROUPS_DESCRIPTION": "Nuestra sección de grupos más destacados está diseñada para ofrecerte una selección exclusiva de los mejores ítems agrupados para reducir tu proceso de compra.",
+          "FOOTER_DESCRIPTION": "Descubre una nueva forma de hacer tus pagos universitarios: rápido, seguro y sin complicaciones",
+          "DIRECT_LINKS": "Enlaces directos",
+          "NEED_HELP": "¿Necesitas ayuda? Contáctate con nosotros"
+        }
+      },
+      "CATALOG": {
+        "TITLE": "Catálogo",
+        "LABELS": {
+          "TITLE": "Catálogo de ítems"
+        }
+      },
+      "GROUPS": {
+        "TITLE": "Grupos",
+        "LABELS": {
+          "TITLE": "Grupos de ítems",
+          "ITEMS_INCLUDED": "ítems incluidos"
+        }
+      }
+    }
+  },
+  "BUTTONS": {
+    "LABELS": {
+      "SEND": "Enviar",
+      "LOGIN": "Iniciar sesión",
+      "REGISTER": "Registrarse",
+      "REGISTER_NOW": "Registrarse ahora",
+      "EXPLORER_CATALOGUE": "Explorar catálogo",
+      "BACK_HOME": "Volver al inicio",
+      "BACK_CATALOG": "Volver al catálogo",
+      "RESEND_VERIFICATION": "Reenviar correo de verificación",
+      "SEE_ALL": "Ver todos",
+      "ADD_CART": "Agregar al carrito",
+      "GENERATE_TICKET": "Generar ticket de pago",
+      "KEEP_ADDING_ITEMS": "Seguir agregando ítems"
+    },
+
+    "ARIA_LABELS": {
+      "SEE_ALL": "Ver todos los items del catálogo"
+    }
+  },
+  "FORM_ERRORS": {
+    "REQUIRED": "El campo es requerido",
+    "DEFAULT": "El valor no es válido"
+  }
+}

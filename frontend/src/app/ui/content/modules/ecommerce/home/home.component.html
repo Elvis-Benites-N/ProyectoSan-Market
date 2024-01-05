@@ -1,0 +1,22 @@
+<div id="container" class="flex-column">
+  <section
+    id="banner"
+    class="flex flex-wrap items-center justify-center gap-40"
+  >
+    <div id="banner__image" style="flex: 0 1 500px; position: relative">
+      <img
+        src="assets/images/ecommerce/home/banner.svg"
+        alt="San Market: La tienda virtual de UNMSM"
+        class="w100"
+      />
+    </div>
+
+    <banner-content id="banner__content" *ngIf="showOutside"></banner-content>
+  </section>
+
+  <div class="flex-column gap-24">
+    <banner-content id="banner__content" *ngIf="!showOutside"></banner-content>
+
+    <benefits></benefits>
+  </div>
+</div>

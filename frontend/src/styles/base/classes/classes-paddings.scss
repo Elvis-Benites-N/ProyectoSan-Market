@@ -1,0 +1,13 @@
+@use '../../tokens/tokens-spacing.scss' as tSpacings;
+
+@mixin padding-classes($name, $paddingSize){
+  .p-#{$name}{
+    padding: $paddingSize;
+  }
+}
+
+@include padding-classes('8', tSpacings.$padding8);
+@include padding-classes('12', tSpacings.$padding12);
+@include padding-classes('16', tSpacings.$padding16);
+@include padding-classes('24', tSpacings.$padding24);
+@include padding-classes('40', tSpacings.$padding40);

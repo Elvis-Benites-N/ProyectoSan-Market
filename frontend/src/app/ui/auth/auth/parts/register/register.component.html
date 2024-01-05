@@ -1,0 +1,243 @@
+<div class="flex-column h100 gap-24 justify-center">
+  <div class="flex-column">
+    <!-- TITULO -->
+    <h1 class="text-inverse">
+      {{ 'MODULES.REGISTER.FORM.LABELS.TITLE' | translate }}
+    </h1>
+    <!-- LOGIN -->
+    <p class="text-inverse">
+      {{ 'MODULES.REGISTER.FORM.LABELS.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <form [formGroup]="registerForm.formulario" nz-form (ngSubmit)="onSubmit()">
+    <div class="flex-column gap-24">
+      <!-- CONTENT FORM -->
+      <div class="flex-column gap-16">
+        <!-- EMAIL -->
+        <nz-form-item>
+          <nz-form-control
+            [nzErrorTip]="
+              registerForm.getErrorMessage('email', 'Correo') | translate
+            "
+            [nzValidateStatus]="registerForm.getValidateStatus('email')"
+          >
+            <nz-input-group nzSize="large" [nzPrefix]="emailPreffix">
+              <input
+                type="text"
+                nz-input
+                placeholder="Correo electrónico *"
+                formControlName="email"
+                maxlength="120"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <!-- PASSWORD AND CONFIRM PASSWORD -->
+        <div class="flex flex-wrap gap-16">
+          <!-- PASSWORD -->
+          <nz-form-item style="flex: 1 1">
+            <nz-form-control
+              [nzErrorTip]="
+                registerForm.getErrorMessage('password', 'Contraseña')
+                  | translate
+              "
+              [nzValidateStatus]="registerForm.getValidateStatus('password')"
+            >
+              <nz-input-group
+                nzSize="large"
+                [nzPrefix]="passwordPreffix"
+                [nzSuffix]="passwordSuffix"
+              >
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Contraseña *"
+                  formControlName="password"
+                  maxlength="50"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- CONFIRM PASSWORD -->
+          <nz-form-item style="flex: 1 1">
+            <nz-form-control
+              [nzErrorTip]="
+                registerForm.getErrorMessage(
+                  'confirmPassword',
+                  'Confirma contraseña'
+                ) | translate
+              "
+              [nzValidateStatus]="
+                registerForm.getValidateStatus('confirmPassword')
+              "
+            >
+              <nz-input-group
+                nzSize="large"
+                [nzPrefix]="passwordPreffix"
+                [nzSuffix]="confirmPasswordSuffix"
+              >
+                <input
+                  [type]="showConfirmPassword ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Confirma Contraseña *"
+                  formControlName="confirmPassword"
+                  maxlength="50"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <!-- NOMBRES AND APELLIDOS -->
+        <div class="flex flex-wrap gap-16">
+          <!-- NOMBRES -->
+          <nz-form-item style="flex: 1 1">
+            <nz-form-control
+              [nzErrorTip]="
+                registerForm.getErrorMessage('nombres', 'Nombres') | translate
+              "
+              [nzValidateStatus]="registerForm.getValidateStatus('nombres')"
+            >
+              <nz-input-group nzSize="large" [nzPrefix]="userPreffix">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Nombres *"
+                  formControlName="nombres"
+                  maxlength="75"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- APELLIDOS -->
+          <nz-form-item style="flex: 1 1">
+            <nz-form-control
+              [nzErrorTip]="
+                registerForm.getErrorMessage('apellidos', 'Apellidos')
+                  | translate
+              "
+              [nzValidateStatus]="registerForm.getValidateStatus('apellidos')"
+            >
+              <nz-input-group nzSize="large" [nzPrefix]="userPreffix">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="Apellidos *"
+                  formControlName="apellidos"
+                  maxlength="75"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <!-- SELECT FACULTAD -->
+        <div class="flex-column" style="gap: 4px">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-select
+                nzSize="large"
+                nzAllowClear
+                class="w100"
+                nzShowSearch
+                nzPlaceHolder="Selecciona una facultad o dependencia"
+                formControlName="facultadId"
+                [nzLoading]="dependenciasResponse === undefined"
+              >
+                <nz-option-group nzLabel="Facultades">
+                  <nz-option
+                    [nzLabel]="facultad.descripcion"
+                    [nzValue]="facultad.id"
+                    *ngFor="let facultad of dependenciasResponse?.facultades"
+                  ></nz-option>
+                </nz-option-group>
+                <nz-option-group nzLabel="Dependencias">
+                  <nz-option
+                    [nzLabel]="dependencia.descripcion"
+                    [nzValue]="dependencia.id"
+                    *ngFor="
+                      let dependencia of dependenciasResponse?.dependencias
+                    "
+                  ></nz-option>
+                </nz-option-group>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <span
+            class="text-inverse"
+            nzTooltipTitle="{{
+              'MODULES.REGISTER.FORM.LABELS.ANSWER_FACULTY_DEPENDENCE'
+                | translate
+            }}"
+            nzTooltipPlacement="bottom"
+            nz-tooltip
+          >
+            {{
+              'MODULES.REGISTER.FORM.LABELS.WHY_FACULTY_DEPENDENCE' | translate
+            }}
+          </span>
+        </div>
+      </div>
+
+      <!-- BOTON -->
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        nzSize="large"
+        nzShape="round"
+        [nzLoading]="registerForm.enviandoFormulario"
+        class="flex items-center justify-center gap-8"
+      >
+        <icon name="clic-emocionado"></icon>
+        {{ 'BUTTONS.LABELS.REGISTER' | translate }}
+      </button>
+    </div>
+  </form>
+
+  <nz-alert
+    nzType="error"
+    [nzMessage]="registerForm.errorMessageFromAPI!"
+    nzCloseable
+    nzShowIcon
+    *ngIf="registerForm.hasErrorFromAPI"
+  ></nz-alert>
+
+  <div style="flex: 1 1 0"></div>
+
+  <small class="text-inverse text-center">
+    {{ 'MODULES.REGISTER.FORM.LABELS.REMEMBER_NOT_INSTITUTIONAL' | translate }}
+  </small>
+</div>
+
+<ng-template #emailPreffix>
+  <icon name="correo"></icon>
+</ng-template>
+
+<ng-template #passwordPreffix>
+  <icon name="lock"></icon>
+</ng-template>
+
+<ng-template #userPreffix>
+  <icon name="info-usuario"></icon>
+</ng-template>
+
+<ng-template #passwordSuffix>
+  <icon
+    [name]="showPassword ? 'closed-eye' : 'eye'"
+    (click)="showPassword = !showPassword"
+    class="pointer"
+  ></icon>
+</ng-template>
+
+<ng-template #confirmPasswordSuffix>
+  <icon
+    [name]="showConfirmPassword ? 'closed-eye' : 'eye'"
+    (click)="showConfirmPassword = !showConfirmPassword"
+    class="pointer"
+  ></icon>
+</ng-template>

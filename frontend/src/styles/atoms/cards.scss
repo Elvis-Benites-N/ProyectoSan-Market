@@ -1,0 +1,16 @@
+@use '../tokens/tokens-colors.scss' as tColors;
+
+.card {
+  border-radius: 8px;
+  box-shadow:
+    2px 2px 0px 0px rgba(29, 61, 147, 0.04),
+    -2px -2px 0px 0px #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+  background: tColors.$color-inverse;
+  
+}
+.card-scale:hover {
+  transform: scale(1.04);
+}

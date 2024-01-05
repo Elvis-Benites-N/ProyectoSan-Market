@@ -1,0 +1,157 @@
+<!-- <form
+  nz-form
+  [formGroup]="checkoutForm.formulario.controls.metodoDePago"
+  (ngSubmit)="onSubmit()"
+  nzLayout="vertical"
+  (keydown.enter)="$event.preventDefault()"
+>
+  <div class="flex-column gap-40">
+    <div class="card flex-column gap-24 p-24">
+      <div class="flex gap-8 items-center">
+        <icon name="unidad" class="text-success"></icon>
+        <h3 class="text-success">Tipo de transferencia bancaria</h3>
+      </div>
+      <div>
+        <nz-form-item>
+          <nz-form-label
+            >Selecciona el banco al cual harás tu transferencia</nz-form-label
+          >
+          <nz-form-control nzErrorTip="Selecciona un método de pago">
+            <nz-radio-group formControlName="metodoId" id="bancos-container">
+              <label nz-radio [nzValue]="1"
+                ><img src="assets/logos/banco-bcp.svg" alt="BCP"
+              /></label>
+              <label nz-radio [nzValue]="2"
+                ><img
+                  src="assets/logos/banco-pichincha.svg"
+                  alt="Banco Pichincha"
+              /></label>
+              <label nz-radio [nzValue]="3"
+                ><img
+                  src="assets/logos/banco-nacion.svg"
+                  alt="Banco de la Nación"
+              /></label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div [ngSwitch]="checkoutForm.formulario.value.metodoDePago?.metodoId">
+          <div *ngSwitchCase="1" class="banco-content">
+            <div
+              nz-row
+              nzAlign="middle"
+              nzJustify="space-between"
+              [nzGutter]="[40, 24]"
+            >
+              <h4 nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="10" nzXl="10">
+                ¡Listo! Después de generar tu ticket, te proporcionaremos un
+                <span class="accent-color-0">código de pago</span> para que
+                puedas completar tu transacción en cualquiera de los canales de
+                atención que te ofrece el BCP. ¡Así de fácil!
+              </h4>
+              <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="14" nzXl="14">
+                <div nz-row [nzGutter]="[24, 24]">
+                  <img
+                    nz-col
+                    [nzSpan]="12"
+                    src="assets/images/ecommerce/checkout/BCP/bcp-1.svg"
+                    alt="BCP-1"
+                  />
+                  <img
+                    nz-col
+                    [nzSpan]="12"
+                    src="assets/images/ecommerce/checkout/BCP/bcp-2.svg"
+                    alt="BCP-2"
+                  />
+                  <img
+                    nz-col
+                    [nzSpan]="12"
+                    src="assets/images/ecommerce/checkout/BCP/bcp-3.svg"
+                    alt="BCP-3"
+                  />
+                  <img
+                    nz-col
+                    [nzSpan]="12"
+                    src="assets/images/ecommerce/checkout/BCP/bcp-4.svg"
+                    alt="BCP-4"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="2" class="banco-content">
+            <div
+              nz-row
+              nzAlign="middle"
+              nzJustify="space-between"
+              [nzGutter]="[40, 24]"
+            >
+              <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="10" nzXl="10">
+                <h4>
+                  ¡Genial! te presentamos los números de cuenta del Banco
+                  Pichincha para que puedas realizar tu transferencia sin
+                  problemas.
+                </h4>
+                <h4>
+                  ¡Recuerda! Debes llevar tu
+                  <span class="accent-color-0"
+                    >documento de identificación</span
+                  >
+                  al momento de acudir a cualquier sucursal del banco.
+                </h4>
+              </div>
+              <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="14" nzXl="14">
+                <img
+                  class="w100"
+                  src="assets/images/ecommerce/checkout/Pichincha/pichincha-1.svg"
+                  alt="Banco Pichincha"
+                />
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="3" class="banco-content">
+            <div
+              nz-row
+              nzAlign="middle"
+              nzJustify="space-between"
+              [nzGutter]="[40, 24]"
+            >
+              <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="10" nzXl="10">
+                <h4>
+                  ¡Bien! Anota el número de cuenta que necesites para realizar
+                  el pago en cualquier sucursal del Banco de la Nación.
+                </h4>
+                <h4>
+                  No olvides llevar contigo tu
+                  <span class="accent-color-0"
+                    >documento de identificación</span
+                  >
+                  al momento de completar tu transacción en el banco.
+                </h4>
+              </div>
+              <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="14" nzXl="14">
+                <img
+                  class="w100"
+                  src="assets/images/ecommerce/checkout/Banco de la Nación/bnacion-1.svg"
+                  alt="Banco de la Nación"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-16">
+      <button nz-button (click)="regresar()" type="button">Anterior</button>
+      <button
+        nz-button
+        nzType="primary"
+        type="submit"
+        [nzLoading]="checkoutForm.enviandoFormulario"
+      >
+        Generar ticket de pago
+      </button>
+    </div>
+  </div>
+</form> -->

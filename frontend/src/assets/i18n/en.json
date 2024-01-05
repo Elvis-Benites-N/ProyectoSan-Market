@@ -1,0 +1,103 @@
+{
+  "MODULES": {
+    "LOGIN": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Hello again!",
+          "SUBTITLE": "Login to your account to stay connected",
+          "FORGOT_PASSWORD": "Forgot your password?",
+          "LOGIN_DIRECT_INSTITUTIONAL": "If you have institutional email, log in directly with your credentials without registering.",
+          "INFO_LOGIN": {
+            "TITLE": "Already have an account?",
+            "DESCRIPTION": "Log in so you can continue exploring the benefits that San Market offers you"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Enter your email",
+          "PASSWORD": "Enter your password"
+        },
+        "ERRORS": {
+          "EMAIL": "Enter a valid email address",
+          "PASSWORD": "Password is too short"
+        }
+      }
+    },
+    "REGISTER": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Welcome to San Market!",
+          "SUBTITLE": "Enter your details to create your account",
+          "WHY_FACULTY_DEPENDENCE": "Why should I choose a Faculty or Dependency?",
+          "ANSWER_FACULTY_DEPENDENCE": "That you choose a Faculty or Dependency will help us to show you items of your interest",
+          "REMEMBER_NOT_INSTITUTIONAL": "Remember! You should not use institutional emails to register.",
+          "INFO_REGISTER": {
+            "TITLE": "Don't have an account yet?",
+            "DESCRIPTION": "Sign up and create an account in San Market to enjoy all the features"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Email*",
+          "PASSWORD": "Password*",
+          "CONFIRM_PASSWORD": "Confirm password*",
+          "NAME": "Names*",
+          "LASTNAME": "LastName*",
+          "FACULTY_DEPENDENCE": "Select a Faculty or Dependency"
+        },
+        "ERRORS": {
+          "EMAIL": "Enter a valid email address",
+          "PASSWORD": "The password is too short",
+          "CONFIRM_PASSWORD": "The password is too short",
+          "NAME": "Enter your names",
+          "LASTNAME": "Enter your last name"
+        }
+      }
+    },
+    "ECOMMERCE": {
+      "HOME": {
+        "TITLE": "Home",
+        "LABELS": {
+          "BANNER_TITLE": "Welcome to San Market!",
+          "BANNER_PARAGRAPH": "Simplify your procedures and save time with San Market: UNMSM's payment platform. Pay online for tuition, workshops, events and more, easily and conveniently.",
+          "FEATURED_ITEMS_TITLE": "Catalog Featured",
+          "FEATURED_ITEMS_DESCRIPTION": "In our catalog featured section you will find an exclusive selection of the most popular items handpicked for you.",
+          "FEATURED_GROUPS_TITLE": "Featured Groups",
+          "FEATURED_GROUPS_DESCRIPTION": "Our Featured Groups section is designed to offer you an exclusive selection of the best items grouped together to shorten your checkout process.",
+          "FOOTER_DESCRIPTION": "Discover a new way to make your college payments: fast, secure and hassle-free",
+          "DIRECT_LINKS": "Direct Links",
+          "NEED_HELP": "Need help? Contact us"
+        }
+      },
+      "CATALOG": {
+        "TITLE": "Catalog",
+        "LABELS": {
+          "TITLE": "Item Catalog"
+        }
+      },
+      "GROUPS": {
+        "TITLE": "Groups",
+        "LABELS": {
+          "TITLE": "Item Groups",
+          "ITEMS_INCLUDED": "items included"
+        }
+      }
+    }
+  },
+  "BUTTONS": {
+    "LABELS": {
+      "SEND": "Send",
+      "LOGIN": "Login",
+      "REGISTER": "Register",
+      "REGISTER_NOW": "Register now",
+      "EXPLORER_CATALOGUE": "Explore Catalog",
+      "BACK_HOME": "Back to home",
+      "BACK_CATALOG": "Back to catalog",
+      "RESEND_VERIFICATION": "Resend verification email",
+      "SEE_ALL": "See all",
+      "ADD_CART": "Add to cart"
+    },
+
+    "ARIA_LABELS": {
+      "SEE_ALL": "See all items in the catalog"
+    }
+  }
+}

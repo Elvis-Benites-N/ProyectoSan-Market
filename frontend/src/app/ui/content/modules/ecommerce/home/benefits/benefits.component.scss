@@ -1,0 +1,25 @@
+.card-benefit {
+  width: 360px;
+  flex: 0 1 360px;
+  box-shadow:
+    1.5999999046325684px 6.399999618530273px 6.399999618530273px 0px #fff inset,
+    -1.5999999046325684px -6.399999618530273px 6.399999618530273px 0px
+      rgba(0, 0, 0, 0.06) inset,
+    12.799999237060547px 57.599998474121094px 83.19999694824219px 0px
+      rgba(15, 123, 133, 0.14),
+    0px 1.5999999046325684px 3.1999998092651367px 0px rgba(0, 0, 0, 0.04) inset;
+  backdrop-filter: blur(16px);
+  border-radius: 8px;
+}
+
+.card-benefit__background {
+  background-image: url('^assets/backgrounds/benefit.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 400ms ease-in-out;
+}
+
+.card-benefit__image:hover + .card-benefit__background {
+  opacity: 1;
+}

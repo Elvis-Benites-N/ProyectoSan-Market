@@ -1,0 +1,138 @@
+<nz-badge [nzCount]="carrito.cantidadTotal" nzShowZero *ngIf="carrito">
+  <button
+    nz-button
+    nzType="default"
+    nzShape="circle"
+    nz-popover
+    [nzPopoverTitle]="tituloPopover"
+    [nzPopoverContent]="contenidoPopover"
+    nzPopoverTrigger="click"
+    [nzPopoverPlacement]="isTablet ? 'bottomRight' : 'bottom'"
+    [(nzPopoverVisible)]="estaCarritoAbierto"
+    class="flex"
+  >
+    <icon name="shopping-cart" style="margin: auto"></icon>
+  </button>
+</nz-badge>
+
+<ng-template #tituloPopover>
+  <div class="w100" style="padding: 12px 8px 12px 16px">
+    <div class="flex justify-space-between items-center">
+      <div class="flex gap-8" style="align-items: baseline">
+        <h4>Mi carrito</h4>
+        <span class="text-subordinate"
+          >{{ carrito!.cantidadItems }} ítem(s),
+          {{ carrito!.cantidadGrupos }} grupo(s),
+          {{ carrito!.cantidadCuotas }} cuota(s)</span
+        >
+      </div>
+      <button
+        nz-button
+        nzType="text"
+        nzShape="circle"
+        (click)="cerrarCarrito()"
+      >
+        X
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contenidoPopover>
+  <div
+    *ngIf="
+      carrito!.cantidadTotal > 0;
+      then itemsCarritoTemplate;
+      else carritoVacioTemplate
+    "
+  ></div>
+
+  <ng-template #itemsCarritoTemplate>
+    <div
+      class="flex-column items-center"
+      style="
+        width: 524px;
+        min-height: 420px;
+        max-height: 60vh;
+        overflow: hidden;
+      "
+    >
+      <div
+        class="flex-column"
+        style="flex-grow: 1; overflow-x: hidden; overflow-y: auto"
+      >
+        <!-- ITEM CATALOGO -->
+        <ng-container
+          *ngFor="let itemCarrito of carrito!.itemsCarrito; let i = index"
+        >
+          <item-cart
+            [itemCarrito]="itemCarrito"
+            (eliminarItem)="eliminarItem($event)"
+            *ngIf="itemCarrito.itemCatalogo"
+          ></item-cart>
+
+          <fee-cart
+            [itemCarrito]="itemCarrito"
+            *ngIf="itemCarrito.cuota"
+          ></fee-cart>
+
+          <nz-divider *ngIf="i < carrito!.itemsCarrito.length - 1"></nz-divider>
+        </ng-container>
+      </div>
+      <div
+        class="flex-column gap-24 p-16"
+        style="box-shadow: 0 -4px 8px -4px rgba(136, 144, 195, 0.2)"
+      >
+        <div class="flex items-center justify-space-between">
+          <h4 class="text-primary-5">Monto total:</h4>
+          <h3 class="text-success">
+            {{ carrito!.monedaSimbolo }}
+            {{ carrito!.precioTotal | number: '.2-2' }}
+          </h3>
+        </div>
+        <div class="flex-column gap-8">
+          <a
+            nz-button
+            nzType="primary"
+            routerLink="/generar-ticket"
+            (click)="cerrarCarrito()"
+          >
+            Generar Ticket de Pago
+          </a>
+          <button nz-button (click)="cerrarCarrito()">
+            Seguir Agregando Ítems
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #carritoVacioTemplate>
+    <div
+      class="flex-column"
+      style="width: 524px; padding: 12px; min-height: 420px; max-height: 60vh"
+    >
+      <div id="contenido-popover" class="flex-column items-center gap-24">
+        <img
+          src="assets/images/carrito-vacio.svg"
+          alt="Carrito vacío"
+          style="width: 40%"
+        />
+        <h4 class="text-center">Tu carrito está vacío</h4>
+        <p class="text-center">
+          Parece que aún no has añadido ítems a tu carrito, revisa el catálogo y
+          agrega lo que necesites
+        </p>
+        <a
+          routerLink="/catalogo"
+          nz-button
+          nzShape="round"
+          nzType="primary"
+          (click)="cerrarCarrito()"
+        >
+          Explorar ítems en el catálogo
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

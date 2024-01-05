@@ -1,0 +1,103 @@
+{
+  "MODULES": {
+    "LOGIN": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "¡Allin kausayki! ¡Hina yachanichu!",
+          "SUBTITLE": "Ñuqa wasipi kutichichu kuskanchikpi munayman hukchurichispa",
+          "FORGOT_PASSWORD": "¿Ñuqa yachanki kanqa qillqanmanmi?",
+          "LOGIN_DIRECT_INSTITUTIONAL": "Kaypi maypi usanmanta riksichisqa qan qillqanmanmi, ñuqa wasipi kuskanchikpi munayman ñuqaqkunapaq llank'uchkan",
+          "INFO_LOGIN": {
+            "TITLE": "¿Kaypi munasqanmi ñuqa wasipi?",
+            "DESCRIPTION": "Ñuqa wasipi kuskanchikpi munayman, San Marketpi munasqaykikunapaq ñuqaqkunapaqmi kuska kanki"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Kaypi maypi qillqan kuskanchik",
+          "PASSWORD": "Kaypi maypi qillqanman kuskanchik"
+        },
+        "ERRORS": {
+          "EMAIL": "Maypi qillqan kuskanchik, ñuqaqkunapaq chaskiyan p'anqa qatichiyta munasqan",
+          "PASSWORD": "Qillqaqa wak kallpachasqa kani"
+        }
+      }
+    },
+    "REGISTER": {
+      "FORM": {
+        "LABELS": {
+          "TITLE": "¡Sulpayki San Marketpi!",
+          "SUBTITLE": "Kaypi maypi datoskunawan kuskanchik, ñuqaq cuenta yanapaqmi tukuyta munan",
+          "WHY_FACULTY_DEPENDENCE": "¿Imataqmi kani, yachanichu: Facultadpi utqa kaniwan Dependentypi utqa kaniwan?",
+          "ANSWER_FACULTY_DEPENDENCE": "Facultadpi utqa kaniwan Dependentypi utqa kaniwanmi kani, ñuqaqa qhawaymanta yanapaqmi yanapaqchu, mana yachanichu",
+          "REMEMBER_NOT_INSTITUTIONAL": "¡Munakuykita! Mana yachanichu, kaniqa correo institucionalpi registrata ruranichu.",
+          "INFO_REGISTER": {
+            "TITLE": "¿Mana yatiq kaniqa munayta kachun?",
+            "DESCRIPTION": "San Marketpi kayta munanichu, tukuy qhawaypi kamchata ruranichu, imapis munanichu"
+          }
+        },
+        "ATTRIBUTES": {
+          "EMAIL": "Chaski yupay*",
+          "PASSWORD": "Sik'imana kuyuchiy*",
+          "CONFIRM_PASSWORD": "Sik'imana kuyuchiy riy*",
+          "NAME": "Sutiyuqkuna*",
+          "LASTNAME": "Sirvinakuna*",
+          "FACULTY_DEPENDENCE": "Yachanichu qhapaq karrukunapaq kamachiy"
+        },
+        "ERRORS": {
+          "EMAIL": "Kamachiyuq sutiyuq kaypi qillqaymi",
+          "PASSWORD": "Sipaspa qillqay",
+          "CONFIRM_PASSWORD": "Sipaspa qillqay",
+          "NAME": "Sutiyuqkuna kani",
+          "LASTNAME": "Kani qillqasqanki sutiyuqmi"
+        }
+      }
+    },
+    "ECOMMERCE": {
+      "HOME": {
+        "TITLE": "Kikin",
+        "LABELS": {
+          "BANNER_TITLE": "¡San Marketpi kawsaykamachisqa!",
+          "BANNER_PARAGRAPH": "San Market: UNMSMmantaqa qayllachuypi, churakunchikta yachachirin. Llaqtapi kani, kawsaqipi kani, rikch'arikunataqa kani, kimsa ch'usaqkunataqa kani, hinaspa yachanichuq kani.",
+          "FEATURED_ITEMS_TITLE": "Qillqan kachkan",
+          "FEATURED_ITEMS_DESCRIPTION": "Kayqa piyusqanmi sutiyuqmi kaypi, mana kaniqa tiyaykupaq k'anchaypiyki, huk tikrasqan, waqaychasqan, ñanqaychasqan yachanakusqanmi paktachkanki kaypi ruraykumanta.",
+          "FEATURED_GROUPS_TITLE": "Qhawarina kuychiykunaqa ruranakunata kichkankichun",
+          "FEATURED_GROUPS_DESCRIPTION": "Ñanpi kay qillqaypi huk tikraypi tukuykuna kamchanki.",
+          "FOOTER_DESCRIPTION": "Qhawarimuykuq kani, mikhuykusqanki, munankichuqmi paykuna kani: sut'ichaypi, llank'aypi hamuychallarayku.",
+          "DIRECT_LINKS": "Wakichaqkuna",
+          "NEED_HELP": "¿Yanapaqmi? Kayman tinkunakupaq"
+        }
+      },
+      "CATALOG": {
+        "TITLE": "Qillqanapaq",
+        "LABELS": {
+          "TITLE": "Sut'inchana kiti kallpanchik"
+        }
+      },
+      "GROUPS": {
+        "TITLE": "Willakuykuna",
+        "LABELS": {
+          "TITLE": "Mikhuykuna kiti qhawaykunapaq",
+          "ITEMS_INCLUDED": "qatiqkuna kullankapak"
+        }
+      }
+    }
+  },
+  "BUTTONS": {
+    "LABELS": {
+      "SEND": "Yaykuy",
+      "LOGIN": "Sullpay k'anchay",
+      "REGISTER": "Riqsichiy",
+      "REGISTER_NOW": "Riqsichiy kaypi",
+      "EXPLORER_CATALOGUE": "Mantaqan katalugman kuskunchu",
+      "BACK_HOME": "Inicioyapay",
+      "BACK_CATALOG": "Kikinmi k'anchay",
+      "RESEND_VERIFICATION": "Mikhuykuy p'anqa kachun t'anta hatunmi kani",
+      "SEE_ALL": "P'unchaw kachun",
+      "ADD_CART": "Churaykuy"
+    },
+
+    "ARIA_LABELS": {
+      "SEE_ALL": "See all items in the catalog"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@use 'styles/tokens/tokens-colors.scss' as tColors;
+@use 'styles/base/resets/reset-ng-zorro.scss';
+@use 'styles/base/classes/classes-colors.scss';
+@use 'styles/base/classes/classes-layouts.scss';
+@use 'styles/base/classes/classes-texts.scss';
+@use 'styles/base/classes/classes-paddings.scss';
+@use 'styles/base/classes/classes-flex.scss';
+@use 'styles/atoms/cards.scss';
+
+:root {
+  --color-purple-1: #{tColors.$color-purple-1};
+  --color-purple-3: #{tColors.$color-purple-3};
+  --color-primary-2: #{tColors.$color-primary-2};
+  --color-primary-6: #{tColors.$color-primary-6};
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+h5{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.border-text-skeleton {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// /*
+// ========= SCROLLBAR - INICIO ========
+// */
+
+// /* Works on Firefox */
+// * {
+//   scrollbar-width: thin;
+//   scrollbar-color: #bfe5ee transparent;
+// }
+
+// /* Works on Chrome, Edge, and Safari */
+// *::-webkit-scrollbar {
+//   width: 12px;
+// }
+
+// *::-webkit-scrollbar-track {
+//   background: transparent;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//   background-color: #bfe5ee;
+//   border: 2px solid transparent;
+//   border-radius: 10px;
+//   background-clip: content-box;
+// }
+
+// /*
+// ========= SCROLLBAR - FIN ========
+// */
